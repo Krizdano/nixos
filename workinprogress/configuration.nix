@@ -380,8 +380,8 @@
   options = {
     icons_enabled = true,
     theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { " " },
+    section_separators = { " " }, 
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -547,6 +547,7 @@ require("nvim-tree").setup({
        "mod4+Down" = "focus down";
        "mod4+Up" = "focus up";
        "mod4+Right" = "focus right";
+       "mod4+Left" = "focus left";
       
        # move focused window
        "mod4+Shift+Left" = "move left";
