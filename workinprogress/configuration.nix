@@ -411,7 +411,11 @@ require("nvim-tree").setup({
     enable = true;
     userName = "Krizdano";
     userEmail = "akrishna852@gmail.com";
-
+  };
+  
+  programs.gh = {
+    enable  = true;
+    enableGitCredentialHelper = true;
   };
    
   services.kdeconnect = {
