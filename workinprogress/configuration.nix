@@ -91,6 +91,8 @@
       lapoff = "swaymsg output eDP-1 dpms off";
       lapon = "swaymsg output eDP-1 dpms on";
       rus = "cd ~/rust/ \n nix-shell"; 
+      gupdate = "cp /home/krizdavezz/NixConfig/configuration.nix  /home/krizdavezz/nixos/workinprogress 
+      \n cd /home/krizdavezz/nixos/workinprogress \n git add configuration.nix \n git commit -m 'updated config' \n git push "; 
 
     };
    };
