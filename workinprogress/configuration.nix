@@ -85,7 +85,7 @@
      enable = true;
     enableCompletion = true;
     shellAliases = {
-      conf = "doas vi /home/krizdavezz/NixConfig/configuration.nix";
+      conf = "vi /home/krizdavezz/NixConfig/configuration.nix";
       rebuild = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix";
       update = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix --upgrade";
       lapoff = "swaymsg output eDP-1 dpms off";
@@ -409,6 +409,9 @@ require("nvim-tree").setup({
 
   programs.git = {
     enable = true;
+    userName = "Krizdano";
+    userEmail = "akrishna852@gmail.com";
+
   };
    
   services.kdeconnect = {
