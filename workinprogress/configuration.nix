@@ -86,7 +86,7 @@
     enableCompletion = true;
     shellAliases = {
       conf = "vi /home/krizdavezz/NixConfig/configuration.nix";
-      rbuild = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix";
+      rebuild = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix";
       update = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix --upgrade";
       lpoff = "swaymsg output eDP-1 dpms off";
       lpon = "swaymsg output eDP-1 dpms on";
@@ -361,7 +361,7 @@
     enable = true;
     viAlias = true;
     withNodeJs = true;
-    extraConfig = "colorscheme carbonfox \n set number";
+    extraConfig = "colorscheme carbonfox \n set relativenumber";
     coc = {
       enable = true;
       settings = { "suggest.noselect" = true; };
@@ -535,6 +535,9 @@ require("nvim-tree").setup({
       window.border = 4;
       keybindings = {     
        "mod4+b" = "exec firefox"; # opens firefox
+       "mod4+y" = "exec firefox https://www.youtube.com"; # opens youtube in firefox
+       "mod4+h" = "exec firefox https://mipmip.github.io/home-manager-option-search/";
+       "mod4+n" = "exec firefox https://search.nixos.org/packages";
        "mod4+Shift+q" = "kill"; # close windows
        "mod4+Return" =  "exec alacritty"; # open terminal (alacritty)
        "mod4+d" = "exec bemenu-run"; # bemeu 
