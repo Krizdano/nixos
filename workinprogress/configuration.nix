@@ -84,6 +84,10 @@
     programs.zsh = {
      enable = true;
     enableCompletion = true;
+    syntaxHighlighting.enable = true;
+    autosuggestions.enable = true;
+    #autocd = true;
+    #defaultKeymap = "vicmd";
     shellAliases = {
       conf = "vi /home/krizdavezz/NixConfig/configuration.nix";
       rebuild = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix";
@@ -152,9 +156,6 @@
   # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
      neofetch
-
-
-     mpv
      gnome.gnome-boxes
      htop
      #git
@@ -163,7 +164,7 @@
      kdenlive
      gimp
      mimeo
-     vscode-fhs
+     #vscode-fhs
      android-studio
      tdesktop
     # gnome.gnome-tweaks
@@ -452,6 +453,40 @@ require("nvim-tree").setup({
     ];
   };
 
+  #kitty
+  programs.kitty = {
+    enable = true;
+    extraConfig = "background            #202020
+foreground            #d0d0d0
+cursor                #d0d0d0
+selection_background  #eecb8b
+color0                #151515
+color8                #505050
+color1                #ac4142
+color9                #ac4142
+color2                #7e8d50
+color10               #7e8d50
+color3                #e5b566
+color11               #e5b566
+color4                #6c99ba
+color12               #6c99ba
+color5                #9e4e85
+color13               #9e4e85
+color6                #7dd5cf
+color14               #7dd5cf
+color7                #d0d0d0
+color15               #f5f5f5
+selection_foreground  #232323
+\n confirm_os_window_close 0 ";
+  };
+
+
+  programs.mpv = {
+    enable = true;
+    scripts = with pkgs.mpvScripts; [
+    ];
+
+  };
 
   programs.git = {
     enable = true;
@@ -468,10 +503,11 @@ require("nvim-tree").setup({
     enable = true;
     indicator = true;
   };
-  
+
+
+
   #theme
   gtk = {
-
     enable = true;
     theme = { 
      name = "WhiteSur-Dark-solid";
@@ -492,7 +528,8 @@ require("nvim-tree").setup({
    swayidle
    wl-clipboard
    mako # notifications
-   alacritty # terminal 
+   w3m # terminal browser
+   ytfzf # terminal youtube 
    bemenu # search bar
    wl-clipboard
    fzf
@@ -528,7 +565,7 @@ require("nvim-tree").setup({
       middle_emulation = "enabled";
      }; };
 
-      terminal = "alacritty";
+      terminal = "kitty";
       menu = "bemenu-run";
       modifier = "Mod4";
       gaps.inner = 5;
@@ -539,7 +576,7 @@ require("nvim-tree").setup({
        "mod4+h" = "exec firefox https://mipmip.github.io/home-manager-option-search/";
        "mod4+n" = "exec firefox https://search.nixos.org/packages";
        "mod4+Shift+q" = "kill"; # close windows
-       "mod4+Return" =  "exec alacritty"; # open terminal (alacritty)
+       "mod4+Return" =  "exec kitty"; # open terminal (alacritty)
        "mod4+d" = "exec bemenu-run"; # bemeu 
        "mod4+Shift+c" = "reload"; # reload sway
        
