@@ -17,8 +17,8 @@
   # programs.adb.enable = true;
   
   # bluetooth 
-   hardware.bluetooth.enable = true;
-   services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -52,27 +52,25 @@
   i18n.defaultLocale = "en_IN";
   
   # Configure keymap in X11
-    services.xserver = {
-      enable = true;  
-      layout = "us";
-      xkbVariant = "";
-    };
+  services.xserver = {
+    enable = true;  
+    layout = "us";
+    xkbVariant = "";
+  };
   
   # dconf 
-    programs.dconf = {
-
-      enable = true;
-
-    };
+  programs.dconf = {
+    enable = true;
+  };
   
    
   # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.krizdavezz = {
-     isNormalUser = true;
-     description = "Krizdavezz";
-     extraGroups = [ "networkmanager" "wheel" "video" "audio" "adbusers" ];
-     packages = with pkgs; [];
-     };
+  users.users.krizdavezz = {
+    isNormalUser = true;
+    description = "Krizdavezz";
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "adbusers" ];
+    packages = with pkgs; [];
+  };
 
 
   # brightness
@@ -81,10 +79,9 @@
   # sound 
   # hardware.pulseaudio.enable = false;  
 
-
   # shell(zsh)
-    programs.zsh = {
-     enable = true;
+  programs.zsh = {
+    enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autosuggestions.enable = true;
@@ -102,27 +99,27 @@
       ggl = "w3m google.com";
       yt  = "ytfzf -t --thumb-viewer=kitty -f -s";
     };
-   };
+  };
   # setting zsh as default shell
   users.defaultUserShell = pkgs.zsh;
  
+
 
   # doas
   security.doas.enable = true;
   security.sudo.enable = false;
   # Configure doas
-    security.doas.extraRules = [{
-     users = [ "krizdavezz" ];
-     keepEnv = true;
-     persist = true;  
-    }
-  ];
+  security.doas.extraRules = [{
+    users = [ "krizdavezz" ];
+    keepEnv = true;
+    persist = true;  
+    }];
 
 
   # fonts
-   fonts.fonts = with pkgs; [
+  fonts.fonts = with pkgs; [
    (nerdfonts.override { fonts = [ "Ubuntu" ]; })
-   ];
+  ];
 
 
   # Allow unfree packages
@@ -132,7 +129,7 @@
   # services.flatpak.enable = true;
 
   # remove xterm terminal
-  services.xserver.excludePackages = [pkgs.xterm ];
+  services.xserver.excludePackages = [pkgs.xterm];
 
   # awesome
   # services.xserver.windowManager.awesome.enable = true;
@@ -151,7 +148,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-   environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
   # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
      neofetch
@@ -179,8 +176,7 @@
      #sway
      glib # gsettings
      #gnome.adwaita-icon-theme  # default gnome cursors 
-
-   ];
+  ];
 
    
   # qt5
@@ -216,7 +212,7 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-   };   
+  };   
    
 
   
@@ -266,27 +262,27 @@
 
 
   # sway idle  
-   services.swayidle= {
+  services.swayidle= {
     enable = true;
     timeouts = [
      { timeout = 200; command = "swaylock -f -c 000000"; }  
      { timeout = 400; command = "swaymsg 'output * poweroff' resume swaymsg 'output * power on'";
-    }  
+     }  
     ];
     events = [
      { event = "before-sleep"; command = "swaylock -f -c 000000";} 
-     ];
-   }; 
+    ];
+  }; 
 
   programs.home-manager = {
    enable = true;
 
-   };
+  };
 
-  #lf
+  # lf
   programs.lf = {
    enable = true; 
-   keybindings = { 
+   keybindings = { # certain keybindings
      "." = "set hidden!";
      "<enter>" = "shell";
      "o" = "open";
@@ -303,7 +299,7 @@
     username = {
       style_user = "bright-white bold";
       style_root = "bright-red bold";
-    };
+   };
     hostname = {
       style = "bright-green bold";
       ssh_only = true;
@@ -350,25 +346,25 @@
 
 
   # neovim
-   programs.neovim = {
-    enable = true;
-    viAlias = true;
-    withNodeJs = true;
-    extraConfig = "colorscheme carbonfox \n set relativenumber";
-    # coc settings
-    coc = {
-      enable = true;
-      settings = { "suggest.noselect" = true; };
-      #coc config
-      pluginConfig = '' inoremap <silent><expr> <TAB>
+  programs.neovim = {
+   enable = true;
+   viAlias = true;
+   withNodeJs = true;
+   extraConfig = "colorscheme carbonfox \n set relativenumber";
+   # coc settings
+   coc = {
+     enable = true;
+     settings = { "suggest.noselect" = true; };
+     #coc config
+     pluginConfig = '' inoremap <silent><expr> <TAB>
                         \ coc#pum#visible() ? coc#pum#next(1) :  
                         \ CheckBackspace() ? "\<Tab>" :
                         \ coc#refresh()''; }; # using tab for completion
     #plugins
     plugins = with pkgs.vimPlugins; [
-     nightfox-nvim #theme 
-     vim-nix #nix language syntaxhighlighting 
-     coc-rust-analyzer # rust language support  
+       nightfox-nvim #theme 
+       vim-nix #nix language syntaxhighlighting 
+       coc-rust-analyzer # rust language support  
 
      {     
        plugin = lualine-nvim; # statusline for neovim
@@ -417,7 +413,7 @@
                 inactive_winbar = {},
                 extensions = {}
                }'';
-             }
+     }
 
      {
        plugin = nvim-tree-lua; # side folder for neovim
@@ -446,13 +442,13 @@
                      dotfiles = true,
                     },
                   }) '';
-       }
-     ];
-   };
+     }
+    ];
+  };
 
 
 
-  #kitty
+  # kitty
   programs.kitty = {
     enable = true;
     extraConfig = "background            #202020
@@ -482,33 +478,34 @@
                   \n confirm_os_window_close 0 ";
   };
 
-
+  # mpv
   programs.mpv = {
     enable = true;
     scripts = with pkgs.mpvScripts; [
-    ];
 
+    ];
   };
 
+  # git
   programs.git = {
     enable = true;
     userName = "Krizdano";
     userEmail = "akrishna852@gmail.com";
   };
   
+  # github cli
   programs.gh = {
     enable  = true;
     enableGitCredentialHelper = true;
   };
    
+  # kdeconnect
   services.kdeconnect = {
     enable = true;
     indicator = true;
   };
 
-
-
-  #theme
+  # theme
   gtk = {
     enable = true;
     theme = { 
@@ -522,8 +519,6 @@
   };
 
 
-
-       
   home.packages = with pkgs; [
    pulseaudio   
    swaylock
@@ -539,33 +534,34 @@
    #rust-analyzer #rust-analyzer 
    slurp
    autotiling #sway autotiling
-   ];
+  ];
 
 
 
   # sway 
-   wayland.windowManager.sway = {
+  wayland.windowManager.sway = {
     enable = true; 
     wrapperFeatures.gtk = true;
     
-   extraSessionCommands = ''export SDL_VIDEODRIVER=wayland
-    export QT_QPA_PLATFORM=wayland
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-    export _JAVA_AWT_WM_NONREPARENTING=1
-    export MOZ_ENABLE_WAYLAND=1
-    export WLR_NO_HARDWARE_CURSORS=1
-    '';
+    extraSessionCommands = ''export SDL_VIDEODRIVER=wayland
+                             export QT_QPA_PLATFORM=wayland
+                             export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+                             export _JAVA_AWT_WM_NONREPARENTING=1
+                             export MOZ_ENABLE_WAYLAND=1
+                             export WLR_NO_HARDWARE_CURSORS=1
+                           '';
    
        
-  # sway config
-   config = {  
-     input = { "PNP0C50:0e 06CB:7E7E Touchpad" = # touchpad config 
-     {
-      dwt = "enable";
-      tap = "enable";
-      natural_scroll = "enabled";
-      middle_emulation = "enabled";
-     }; };
+    # sway config
+    config = {  
+      # touchpad config 
+      input = { "PNP0C50:0e 06CB:7E7E Touchpad" = {
+        dwt = "enable";
+        tap = "enable";
+        natural_scroll = "enabled";
+        middle_emulation = "enabled";
+       };
+      };
 
       terminal = "kitty";
       menu = "bemenu-run";
@@ -629,48 +625,41 @@
      };
 
 
-  # swaybar config
-   bars = [{
-    fonts.size = 15.0; 
-    command = "waybar";
-    position = "top";
-    hiddenState = "hide";
-    mode = "hide";
-    extraConfig = "modifier mod4";
-   }];
+      # swaybar config
+      bars = [{
+       fonts.size = 15.0; 
+       command = "waybar";
+       position = "top";
+       hiddenState = "hide";
+       mode = "hide";
+       extraConfig = "modifier mod4";
+      }];
        
-  # output      
-   output = {  # external monitor
-    HDMI-A-1 = { 
-     mode = "1366x768";
-     bg =  "/home/krizdavezz/Pictures/wallpaper/the big lebowski.jpg fill" ;            
-     position = "0,1920";
+      # output      
+      output = {  # external monitor
+       HDMI-A-1 = { 
+        mode = "1366x768";
+        bg =  "/home/krizdavezz/Pictures/wallpaper/the big lebowski.jpg fill" ;            
+        position = "0,1920";
+       };
       };
-     };
     };
           
-  # extra configurations
-   extraConfig = 
-   "exec autotiling \n
-    output * bg /home/krizdavezz/Pictures/wallpaper/the big lebowski.jpg fill"; 
-   };
+    # extra configurations
+    extraConfig = 
+     "exec autotiling \n
+      output * bg /home/krizdavezz/Pictures/wallpaper/the big lebowski.jpg fill"; 
+  };
       
   # waybar
-   programs.waybar = {
+  programs.waybar = {
     enable = true;   
-     style= (builtins.readFile  /home/krizdavezz/.config/waybar/style.css);
-    };
-
-
-   };
-
+    style= (builtins.readFile  /home/krizdavezz/.config/waybar/style.css);
   };
+
+
+   }; #end of home-manager programs
+
+  }; # end of home-manager
  
-
- 
-
- 
-
-
-
-}
+} # end of configuration
