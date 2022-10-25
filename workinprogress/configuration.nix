@@ -97,7 +97,7 @@
       gupdate = "cp /home/krizdavezz/NixConfig/configuration.nix  /home/krizdavezz/nixos/workinprogress 
       \n pushd /home/krizdavezz/nixos/workinprogress \n git add configuration.nix \n git commit -m 'updated config' \n git push \n popd "; 
       ggl = "w3m google.com";
-      yt  = "ytfzf -t --thumb-viewer=kitty -f -s";
+      yt  = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l";
     };
   };
   # setting zsh as default shell
@@ -451,31 +451,28 @@
   # kitty
   programs.kitty = {
     enable = true;
-    extraConfig = "background            #202020
-                   foreground            #d0d0d0
-                   cursor                #d0d0d0
-
-                   selection_background  #eecb8b
-                   color0                #151515
-                   color8                #505050
-                   color1                #ac4142
-                   color9                #ac4142
-                   color2                #7e8d50
-                   color10               #7e8d50
-                   color3                #e5b566
-                   color11               #e5b566
-                   color4                #6c99ba
-                   color12               #6c99ba
-                   color5                #9e4e85
-                   color13               #9e4e85
-                   color6                #7dd5cf
-                   color14               #7dd5cf
-                   color7                #d0d0d0
-                   color15               #f5f5f5
-
-                   selection_foreground  #232323
-
-                  \n confirm_os_window_close 0 ";
+    extraConfig = "background            #161718
+                   foreground            #b7bcb9
+                   cursor                #b7bcb9
+                   selection_background  #1e1f22
+                   color0                #2a2e33
+                   color8                #1d1e21
+                   color1                #b74d50
+                   color9                #8c2d32
+                   color2                #b3be5a
+                   color10               #788331
+                   color3                #e3b55e
+                   color11               #e5894f
+                   color4                #6d90b0
+                   color12               #4b6b88
+                   color5                #a07eab
+                   color13               #6e4f79
+                   color6                #7fbeb3
+                   color14               #4d7b73
+                   color7                #b5b8b6
+                   color15               #5a6169
+                   selection_foreground #161718
+                 \n confirm_os_window_close 0 ";
   };
 
   # mpv
