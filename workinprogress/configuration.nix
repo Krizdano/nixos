@@ -373,7 +373,7 @@
 
                   options = {
                   icons_enabled = true,
-                  theme = 'auto',
+                  theme = 'nord',
                   component_separators = " ",  
                   section_separators = " " ,
                   disabled_filetypes = {
@@ -563,8 +563,19 @@
       terminal = "kitty";
       menu = "bemenu-run";
       modifier = "Mod4";
-      gaps.inner = 5;
+      gaps.inner = 7;
       window.border = 4;
+      colors = {
+        focused = {
+          background = "#ffffff";
+          border = "#ffffff";
+          childBorder = "#ffffff";
+          indicator = "#ffffff";
+          text = "#ffffff";
+        };
+
+
+      };
       keybindings = {     
        "mod4+b" = "exec firefox"; # opens firefox
        "mod4+y" = "exec firefox https://www.youtube.com"; # opens youtube in firefox
@@ -636,7 +647,7 @@
       output = {  # external monitor
        HDMI-A-1 = { 
         mode = "1366x768";
-        bg =  "/home/krizdavezz/Pictures/wallpaper/the big lebowski.jpg fill" ;            
+        bg =  "/home/krizdavezz/Pictures/wallpaper/pulp_fiction_wallpaper.jpg fill";        
         position = "0,1920";
        };
       };
@@ -645,7 +656,7 @@
     # extra configurations
     extraConfig = 
      "exec autotiling \n
-      output * bg /home/krizdavezz/Pictures/wallpaper/the big lebowski.jpg fill"; 
+      output * bg /home/krizdavezz/Pictures/wallpaper/palette_wallpaper.png fill";
   };
       
   # waybar
