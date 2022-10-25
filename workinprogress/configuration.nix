@@ -14,7 +14,7 @@
    
   
   # adb
- # programs.adb.enable = true;
+  # programs.adb.enable = true;
   
   # bluetooth 
    hardware.bluetooth.enable = true;
@@ -32,6 +32,7 @@
  
   networking.hostName = "nixos"; # Define your hostname.
 
+ 
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
  
@@ -43,7 +44,7 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
- 
+
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
 
@@ -57,13 +58,14 @@
       xkbVariant = "";
     };
   
-   
+  # dconf 
     programs.dconf = {
 
       enable = true;
 
     };
   
+   
   # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.krizdavezz = {
      isNormalUser = true;
@@ -88,7 +90,7 @@
     autosuggestions.enable = true;
     #autocd = true;
     #defaultKeymap = "vicmd";
-    shellAliases = {
+    shellAliases = { # all shell aliases
       conf = "vi /home/krizdavezz/NixConfig/configuration.nix";
       rebuild = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix";
       update = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix --upgrade";
@@ -97,18 +99,17 @@
       rus = "cd ~/rust/ \n nix-shell"; 
       gupdate = "cp /home/krizdavezz/NixConfig/configuration.nix  /home/krizdavezz/nixos/workinprogress 
       \n pushd /home/krizdavezz/nixos/workinprogress \n git add configuration.nix \n git commit -m 'updated config' \n git push \n popd "; 
-
+      ggl = "w3m google.com";
+      yt  = "ytfzf -t --thumb-viewer=kitty -f -s";
     };
    };
   # setting zsh as default shell
   users.defaultUserShell = pkgs.zsh;
  
 
- 
   # doas
   security.doas.enable = true;
   security.sudo.enable = false;
- 
   # Configure doas
     security.doas.extraRules = [{
      users = [ "krizdavezz" ];
@@ -116,7 +117,6 @@
      persist = true;  
     }
   ];
-
 
 
   # fonts
@@ -131,7 +131,7 @@
   # flatpak
   # services.flatpak.enable = true;
 
-  # xterm
+  # remove xterm terminal
   services.xserver.excludePackages = [pkgs.xterm ];
 
   # awesome
@@ -140,7 +140,7 @@
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   # services.gnome.core-utilities.enable = false; #gnome without apps
-  services.xserver.displayManager.lightdm.enable = false;
+  services.xserver.displayManager.lightdm.enable = false; #disables ldm 
   
 
   # exclude package gnome 
@@ -148,7 +148,6 @@
   # pkgs.gnome.gnome-session
   # ];
      
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -159,13 +158,10 @@
      gnome.gnome-boxes
      htop
      #git
-     blender
      gdu
-     kdenlive
      gimp
      mimeo
      #vscode-fhs
-     android-studio
      tdesktop
     # gnome.gnome-tweaks
      firefox-wayland 
@@ -285,7 +281,6 @@
   programs.home-manager = {
    enable = true;
 
-
    };
 
   #lf
@@ -296,10 +291,7 @@
      "<enter>" = "shell";
      "o" = "open";
      "DD" = "delete";
-  
-
- };
-
+   };
   };
 
   # starship-prompt
@@ -363,121 +355,131 @@
     viAlias = true;
     withNodeJs = true;
     extraConfig = "colorscheme carbonfox \n set relativenumber";
+    # coc settings
     coc = {
       enable = true;
       settings = { "suggest.noselect" = true; };
-       pluginConfig = '' inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()''; };
+      #coc config
+      pluginConfig = '' inoremap <silent><expr> <TAB>
+                        \ coc#pum#visible() ? coc#pum#next(1) :  
+                        \ CheckBackspace() ? "\<Tab>" :
+                        \ coc#refresh()''; }; # using tab for completion
+    #plugins
     plugins = with pkgs.vimPlugins; [
-     nightfox-nvim 
-     vim-nix 
-     coc-rust-analyzer
-     {
-       plugin = lualine-nvim;
+     nightfox-nvim #theme 
+     vim-nix #nix language syntaxhighlighting 
+     coc-rust-analyzer # rust language support  
+
+     {     
+       plugin = lualine-nvim; # statusline for neovim
        type = "lua";
-       config = '' require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'auto',
-    component_separators = { " " },
-    section_separators = { " " }, 
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
-    },
-    ignore_focus = {},
-    always_divide_middle = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
-    }
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {}
-  }''; }
+       config = ''require('lualine').setup {
+
+                  options = {
+                  icons_enabled = true,
+                  theme = 'auto',
+                  component_separators = " ",  
+                  section_separators = " " ,
+                  disabled_filetypes = {
+                  statusline = {},
+                  winbar = {},
+                 }, 
+
+                 ignore_focus = {},
+                 always_divide_middle = true,
+                 globalstatus = false,
+                 refresh = {
+                 statusline = 1000,
+                 tabline = 1000,
+                 winbar = 1000,
+                 }
+                },
+
+                sections = {
+                lualine_a = {'mode'},
+                lualine_b = {'branch', 'diff', 'diagnostics'},
+                lualine_c = {'filename'},
+                lualine_x = {'encoding', 'fileformat', 'filetype'},
+                lualine_y = {'progress'},
+                lualine_z = {'location'}
+               },
+
+                inactive_sections = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = {'filename'},
+                lualine_x = {'location'},
+                lualine_y = {},
+                lualine_z = {}
+               },
+                tabline = {},
+                winbar = {},
+                inactive_winbar = {},
+                extensions = {}
+               }'';
+             }
 
      {
-       plugin = nvim-tree-lua;
+       plugin = nvim-tree-lua; # side folder for neovim
        type = "lua";
        config = '' -- examples for your init.lua
 
--- disable netrw at the very start of your init.lua (strongly advised)
-  vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+                   -- disable netrw at the very start of your init.lua (strongly advised)
+                      vim.g.loaded_netrw = 1
+                      vim.g.loaded_netrwPlugin = 1
 
--- empty setup using defaults
-require("nvim-tree").setup()
+                   -- setup with some options
+                      require("nvim-tree").setup({
+                      sort_by = "case_sensitive",
+                      view = {
+                      adaptive_size = true,
+                      mappings = {
+                      list = {
+                      { key = "u", action = "dir_up" },
+                       },
+                      },
+                     },
+                      renderer = {
+                      group_empty = true,
+                     },
+                     filters = {
+                     dotfiles = true,
+                    },
+                  }) '';
+       }
+     ];
+   };
 
--- OR setup with some options
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    adaptive_size = true,
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
-      },
-    },
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-}) '';
-     
-}
-    ];
-  };
+
 
   #kitty
   programs.kitty = {
     enable = true;
     extraConfig = "background            #202020
-foreground            #d0d0d0
-cursor                #d0d0d0
-selection_background  #eecb8b
-color0                #151515
-color8                #505050
-color1                #ac4142
-color9                #ac4142
-color2                #7e8d50
-color10               #7e8d50
-color3                #e5b566
-color11               #e5b566
-color4                #6c99ba
-color12               #6c99ba
-color5                #9e4e85
-color13               #9e4e85
-color6                #7dd5cf
-color14               #7dd5cf
-color7                #d0d0d0
-color15               #f5f5f5
-selection_foreground  #232323
-\n confirm_os_window_close 0 ";
+                   foreground            #d0d0d0
+                   cursor                #d0d0d0
+
+                   selection_background  #eecb8b
+                   color0                #151515
+                   color8                #505050
+                   color1                #ac4142
+                   color9                #ac4142
+                   color2                #7e8d50
+                   color10               #7e8d50
+                   color3                #e5b566
+                   color11               #e5b566
+                   color4                #6c99ba
+                   color12               #6c99ba
+                   color5                #9e4e85
+                   color13               #9e4e85
+                   color6                #7dd5cf
+                   color14               #7dd5cf
+                   color7                #d0d0d0
+                   color15               #f5f5f5
+
+                   selection_foreground  #232323
+
+                  \n confirm_os_window_close 0 ";
   };
 
 
@@ -557,7 +559,7 @@ selection_foreground  #232323
        
   # sway config
    config = {  
-     input = { "PNP0C50:0e 06CB:0e_06CB:7E7E_Touchpad" = # touchpad config 
+     input = { "PNP0C50:0e 06CB:7E7E Touchpad" = # touchpad config 
      {
       dwt = "enable";
       tap = "enable";
