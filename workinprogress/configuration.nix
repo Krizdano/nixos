@@ -441,6 +441,7 @@ custom_catppuccin.inactive.c.bg = cp.base
 				"buffers",
 				separator = { left = "", right = ""},
 				right_padding = 5,
+				top_padding = 5,
 				symbols = { alternate_file = "" },
 			},
 		},
@@ -565,7 +566,12 @@ color14 #94E2D5
 # white
 color7  #BAC2DE
 color15 #A6ADC8
+
+
+                 \n background_opacity         0.6
+                 \n dynamic_background_opacity yes
                  \n confirm_os_window_close 0 ";
+
   };
 
   # mpv
@@ -595,12 +601,14 @@ color15 #A6ADC8
     indicator = true;
   };
 
-  # theme
   gtk = {
     enable = true;
-    theme = { 
-     name = "WhiteSur-Dark-solid";
+    theme =  { 
+    name =  "Catppuccin-Mocha";
+        
     };
+
+    
   };
 
   qt = {
@@ -657,13 +665,13 @@ color15 #A6ADC8
       menu = "bemenu-run";
       modifier = "Mod4";
       gaps.inner = 7;
-      window.border = 4;
+      window.border = 2;
       colors = {
         focused = {
           background = "#ffffff";
           border = "#ffffff";
-          childBorder = "#bac2de";
-          indicator = "#bac2de";
+          childBorder = "#89b4fa";
+          indicator = "#89b4fa";
           text = "#ffffff";
         };
 
@@ -754,7 +762,7 @@ color15 #A6ADC8
     # extra configurations
     extraConfig = 
      "exec autotiling \n
-      output * bg /home/krizdavezz/Pictures/wallpaper/palette_wallpaper.png fill";
+      output * bg /home/krizdavezz/Pictures/wallpaper/three_squares.png fill";
   };
       
   # waybar
