@@ -93,8 +93,8 @@ Arc-Dark Color Scheme
 	
 	font-family: "Ubuntu";
 	color: @text;
-	padding-right: 10px;
-	padding-right: 10px;
+	padding-right: 6px;
+	padding-right: 6px;
 
 }
 
@@ -134,6 +134,8 @@ Arc-Dark Color Scheme
 #cpu {
     padding-left: 0px;
     margin-right: 0px;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
 #memory {
@@ -144,15 +146,15 @@ Arc-Dark Color Scheme
 }
 #network {
     border-radius: 0px 0px 0px 0px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
     margin-right: 0px;
 }
 
 #battery {
     border-radius: 0px 0px 0px 0px;
-    padding-left: 10px;
-    padding-right: 5px;
+    padding-left: 6px;
+    padding-right: 10px;
     margin-right: 0px;
 }
 
@@ -171,7 +173,7 @@ Arc-Dark Color Scheme
 
 #pulseaudio {
     padding-left: 0px;
-    padding-top:6px;
+    padding-top: 10px;
     padding-right: 4px;
     border-radius: 0px 8px 8px 0px;
 }
@@ -221,8 +223,8 @@ Arc-Dark Color Scheme
 #clock {
     color: @text;
     border-radius: 8px;
-    padding-right: 16px;
-    padding-left: 0px;
+    padding-right: 10px;
+    padding-left: 6px;
     background-color: @background;
   
 }
