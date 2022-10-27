@@ -350,7 +350,10 @@
    enable = true;
    viAlias = true;
    withNodeJs = true;
-   extraConfig = "colorscheme carbonfox \n set relativenumber";
+   extraConfig = "  \n set relativenumber 
+                    \n set ignorecase 
+                    \n colorscheme catppuccin
+                    ";
    # coc settings
    coc = {
      enable = true;
@@ -362,86 +365,126 @@
                         \ coc#refresh()''; }; # using tab for completion
     #plugins
     plugins = with pkgs.vimPlugins; [
-       nightfox-nvim #theme 
+       #nightfox-nvim #theme 
        vim-nix #nix language syntaxhighlighting 
        coc-rust-analyzer # rust language support  
+
+              {
+         plugin = nvim-autopairs;
+         type = "lua";
+         config = ''require("nvim-autopairs").setup {}'';
+       }
+       
+            {
+       plugin = catppuccin-nvim;
+       type = "lua";
+       config = ''require("catppuccin").setup {
+         flavour = "mocha",
+         background = {
+         light = "latte",
+         dark = "mocha",
+         },
+	compile_path = vim.fn.stdpath "cache" .. "/catppuccin",
+         color_overrides = {
+         mocha = {
+         base = "#161718",
+          },
+         },
+         integrations = {
+         nvimtree = true,
+          },
+    }
+
+         ''; }
+
 
      {     
        plugin = lualine-nvim; # statusline for neovim
        type = "lua";
-       config = ''require('lualine').setup {
-
-                  options = {
-                  icons_enabled = true,
-                  theme = 'nord',
-                  component_separators = " ",  
-                  section_separators = " " ,
-                  disabled_filetypes = {
-                  statusline = {},
-                  winbar = {},
-                 }, 
-
-                 ignore_focus = {},
-                 always_divide_middle = true,
-                 globalstatus = false,
-                 refresh = {
-                 statusline = 1000,
-                 tabline = 1000,
-                 winbar = 1000,
-                 }
-                },
-
-                sections = {
-                lualine_a = {'mode'},
-                lualine_b = {'branch', 'diff', 'diagnostics'},
-                lualine_c = {'filename'},
-                lualine_x = {'encoding', 'fileformat', 'filetype'},
-                lualine_y = {'progress'},
-                lualine_z = {'location'}
-               },
-
-                inactive_sections = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_c = {'filename'},
-                lualine_x = {'location'},
-                lualine_y = {},
-                lualine_z = {}
-               },
-                tabline = {},
-                winbar = {},
-                inactive_winbar = {},
-                extensions = {}
-               }'';
+       config = '' local cp = require("catppuccin.palettes").get_palette()
+local custom_catppuccin = require "lualine.themes.catppuccin"
+custom_catppuccin.normal.b.bg = cp.surface0
+custom_catppuccin.normal.c.bg = cp.base
+custom_catppuccin.insert.b.bg = cp.surface0
+custom_catppuccin.command.b.bg = cp.surface0
+custom_catppuccin.visual.b.bg = cp.surface0
+custom_catppuccin.replace.b.bg = cp.surface0
+custom_catppuccin.inactive.a.bg = cp.base
+custom_catppuccin.inactive.b.bg = cp.base
+custom_catppuccin.inactive.b.fg = cp.surface0
+custom_catppuccin.inactive.c.bg = cp.base 
+        require("lualine").setup {
+	options = {
+		theme = custom_catppuccin,
+		component_separators = "|",
+		section_separators = { left = "", right = ""},
+	},
+	sections = {
+		lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+		lualine_b = { "filename", "branch", { "diff", colored = false } },
+		lualine_c = {},
+		lualine_x = {},
+		lualine_y = { "filetype", "progress" },
+		lualine_z = { { "location", separator = { right = ""}, left_padding = 2 } },
+	},
+	inactive_sections = {
+		lualine_a = { "filename" },
+		lualine_b = {},
+		lualine_c = {},
+		lualine_x = {},
+		lualine_y = {},
+		lualine_z = {},
+	},
+	tabline = {
+		lualine_a = {
+			{
+				"buffers",
+				separator = { left = "", right = ""},
+				right_padding = 5,
+				symbols = { alternate_file = "" },
+			},
+		},
+	},
+}
+'';
      }
 
      {
        plugin = nvim-tree-lua; # side folder for neovim
        type = "lua";
-       config = '' -- examples for your init.lua
+       config = ''                    
 
-                   -- disable netrw at the very start of your init.lua (strongly advised)
-                      vim.g.loaded_netrw = 1
-                      vim.g.loaded_netrwPlugin = 1
-
-                   -- setup with some options
-                      require("nvim-tree").setup({
-                      sort_by = "case_sensitive",
-                      view = {
-                      adaptive_size = true,
-                      mappings = {
-                      list = {
-                      { key = "u", action = "dir_up" },
-                       },
-                      },
-                     },
-                      renderer = {
-                      group_empty = true,
-                     },
-                     filters = {
-                     dotfiles = true,
-                    },
-                  }) '';
+                      require("nvim-tree").setup{
+                     disable_netrw = true,
+	hijack_netrw = true,
+	open_on_tab = false,
+	hijack_cursor = true,
+	hijack_unnamed_buffer_when_opening = false,
+	update_cwd = true,
+	update_focused_file = {
+		enable = true,
+		update_cwd = false,
+	},
+	sync_root_with_cwd = true,
+	view = {
+		width = 25,
+		hide_root_folder = false,
+	},
+	git = {
+		enable = false,
+		ignore = true,
+	},
+	actions = {
+		open_file = {
+			resize_window = true,
+		},
+	},
+	renderer = {
+		indent_markers = {
+			enable = false,
+		},
+	},
+} '';
      }
     ];
   };
@@ -451,27 +494,77 @@
   # kitty
   programs.kitty = {
     enable = true;
-    extraConfig = "background            #161718
-                   foreground            #b7bcb9
-                   cursor                #b7bcb9
-                   selection_background  #1e1f22
-                   color0                #2a2e33
-                   color8                #1d1e21
-                   color1                #b74d50
-                   color9                #8c2d32
-                   color2                #b3be5a
-                   color10               #788331
-                   color3                #e3b55e
-                   color11               #e5894f
-                   color4                #6d90b0
-                   color12               #4b6b88
-                   color5                #a07eab
-                   color13               #6e4f79
-                   color6                #7fbeb3
-                   color14               #4d7b73
-                   color7                #b5b8b6
-                   color15               #5a6169
-                   selection_foreground #161718
+    extraConfig = "
+# The basic colors
+foreground              #CDD6F4
+background              #161718
+selection_foreground    #1E1E2E
+selection_background    #F5E0DC
+
+# Cursor colors
+cursor                  #F5E0DC
+cursor_text_color       #1E1E2E
+
+# URL underline color when hovering with mouse
+url_color               #F5E0DC
+
+# Kitty window border colors
+active_border_color     #B4BEFE
+inactive_border_color   #6C7086
+bell_border_color       #F9E2AF
+
+# OS Window titlebar colors
+wayland_titlebar_color system
+macos_titlebar_color system
+
+# Tab bar colors
+active_tab_foreground   #11111B
+active_tab_background   #CBA6F7
+inactive_tab_foreground #CDD6F4
+inactive_tab_background #181825
+tab_bar_background      #11111B
+
+# Colors for marks (marked text in the terminal)
+mark1_foreground #1E1E2E
+mark1_background #B4BEFE
+mark2_foreground #1E1E2E
+mark2_background #CBA6F7
+mark3_foreground #1E1E2E
+mark3_background #74C7EC
+
+# The 16 terminal colors
+
+# black
+color0 #45475A
+color8 #585B70
+
+# red
+color1 #F38BA8
+color9 #F38BA8
+
+# green
+color2  #A6E3A1
+color10 #A6E3A1
+
+# yellow
+color3  #F9E2AF
+color11 #F9E2AF
+
+# blue
+color4  #89B4FA
+color12 #89B4FA
+
+# magenta
+color5  #F5C2E7
+color13 #F5C2E7
+
+# cyan
+color6  #94E2D5
+color14 #94E2D5
+
+# white
+color7  #BAC2DE
+color15 #A6ADC8
                  \n confirm_os_window_close 0 ";
   };
 
@@ -569,8 +662,8 @@
         focused = {
           background = "#ffffff";
           border = "#ffffff";
-          childBorder = "#ffffff";
-          indicator = "#ffffff";
+          childBorder = "#bac2de";
+          indicator = "#bac2de";
           text = "#ffffff";
         };
 
@@ -579,7 +672,7 @@
       keybindings = {     
        "mod4+b" = "exec firefox"; # opens firefox
        "mod4+y" = "exec firefox https://www.youtube.com"; # opens youtube in firefox
-       "mod4+h" = "exec firefox https://mipmip.github.io/home-manager-option-search/";
+       "mod4+Shift+h" = "exec firefox https://mipmip.github.io/home-manager-option-search/";
        "mod4+n" = "exec firefox https://search.nixos.org/packages";
        "mod4+Shift+q" = "kill"; # close windows
        "mod4+Return" =  "exec kitty"; # open terminal (alacritty)
@@ -594,7 +687,12 @@
        "mod4+Up" = "focus up";
        "mod4+Right" = "focus right";
        "mod4+Left" = "focus left";
-      
+       # vi modvi mode
+       "mod4+j" = "focus down";
+       "mod4+k" = "focus up";
+       "mod4+l" = "focus right";
+       "mod4+h" = "focus left";
+
        # move focused window
        "mod4+Shift+Left" = "move left";
        "mod4+Shift+Down" = "move down";
