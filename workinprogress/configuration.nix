@@ -16,6 +16,11 @@
   # adb
   # programs.adb.enable = true;
   
+  #opengl
+  hardware.opengl= {
+    enable = true;
+  };
+
   # bluetooth 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -89,15 +94,15 @@
     #defaultKeymap = "vicmd";
     shellAliases = { # all shell aliases
       conf = "vi /home/krizdavezz/NixConfig/configuration.nix";
-      rebuild = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix";
+      re = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix";
       update = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix --upgrade";
-      lpoff = "swaymsg output eDP-1 dpms off";
-      lpon = "swaymsg output eDP-1 dpms on";
+      lo = "swaymsg output eDP-1 dpms off";
+      ln = "swaymsg output eDP-1 dpms on";
       rus = "cd ~/rust/ \n nix-shell"; 
-      gupdate = "cp /home/krizdavezz/NixConfig/configuration.nix  /home/krizdavezz/nixos/workinprogress 
+      gp = "cp /home/krizdavezz/NixConfig/configuration.nix  /home/krizdavezz/nixos/workinprogress 
       \n pushd /home/krizdavezz/nixos/workinprogress \n git add configuration.nix \n git commit -m 'updated config' \n git push \n popd "; 
-      ggl = "w3m google.com";
-      yt  = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l";
+      gg = "w3m google.com";
+      yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l";
     };
   };
   # setting zsh as default shell
@@ -165,6 +170,7 @@
      #themes
      whitesur-gtk-theme
      tela-circle-icon-theme
+     libsForQt5.qt5ct
      
      #rust
      #rustup
@@ -180,8 +186,12 @@
 
    
   # qt5
-  #qt5.platformTheme = "qt5ct";
+  qt5.platformTheme = "qt5ct";
+  #qt5.style = "gtk2";
 
+  environment.variables = {
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+  };
   # Gtk theme 
   #environment.sessionVariables = {GTK_THEME="WhiteSur-Dark-solid";};
  
@@ -253,7 +263,7 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    users.krizdavezz = { pkgs, ... }: {
+    users.krizdavezz = { config, pkgs, inputs, ... }: {
 
   # Everything inside here is managed by Home Manager!
 
@@ -278,6 +288,7 @@
    enable = true;
 
   };
+
 
   # lf
   programs.lf = {
@@ -567,8 +578,8 @@ color14 #94E2D5
 color7  #BAC2DE
 color15 #A6ADC8
 
-
-                 \n background_opacity         0.6
+                  
+                 \n background_opacity 0.6
                  \n dynamic_background_opacity yes
                  \n confirm_os_window_close 0 ";
 
@@ -621,6 +632,7 @@ color15 #A6ADC8
    pulseaudio   
    swaylock
    swayidle
+   sway-launcher-desktop
    wl-clipboard
    mako # notifications
    w3m # terminal browser
@@ -629,6 +641,7 @@ color15 #A6ADC8
    wl-clipboard
    fzf
    wf-recorder
+   sway-contrib.inactive-windows-transparency
    #rust-analyzer #rust-analyzer 
    slurp
    autotiling #sway autotiling
@@ -653,7 +666,7 @@ color15 #A6ADC8
     # sway config
     config = {  
       # touchpad config 
-      input = { "PNP0C50:0e 06CB:7E7E Touchpad" = {
+      input = { "1739:32382:PNP0C50:0e_06CB:7E7E_Touchpad" = {
         dwt = "enable";
         tap = "enable";
         natural_scroll = "enabled";
@@ -670,13 +683,15 @@ color15 #A6ADC8
         focused = {
           background = "#ffffff";
           border = "#ffffff";
-          childBorder = "#89b4fa";
-          indicator = "#89b4fa";
+          childBorder = "#BAC2DE";
+          indicator = "#BAC2DE";
           text = "#ffffff";
         };
 
-
       };
+
+      assigns = {"1: web" = [{ class = "^mpv$"; }];};
+      
       keybindings = {     
        "mod4+b" = "exec firefox"; # opens firefox
        "mod4+y" = "exec firefox https://www.youtube.com"; # opens youtube in firefox
@@ -684,7 +699,7 @@ color15 #A6ADC8
        "mod4+n" = "exec firefox https://search.nixos.org/packages";
        "mod4+Shift+q" = "kill"; # close windows
        "mod4+Return" =  "exec kitty"; # open terminal (alacritty)
-       "mod4+d" = "exec bemenu-run"; # bemeu 
+       "mod4+d" = "exec kitty --class=launcher -e /nix/store/hx3w4vf0ky19kwsaz8pmc7n38g3mii17-sway-launcher-desktop-1.6.0/bin/sway-launcher-desktop"; # bemeu 
        "mod4+Shift+c" = "reload"; # reload sway
        
        # exit sway 
@@ -762,7 +777,10 @@ color15 #A6ADC8
     # extra configurations
     extraConfig = 
      "exec autotiling \n
-      output * bg /home/krizdavezz/Pictures/wallpaper/three_squares.png fill";
+     exec inactive-windows-transparency.py \n 
+     output * bg /home/krizdavezz/Pictures/wallpaper/three_squares.png fill \n
+     include /home/krizdavezz/.config/sway/extraconf 
+       ";
   };
       
   # waybar
