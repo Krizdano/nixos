@@ -102,7 +102,7 @@
       gp = "cp /home/krizdavezz/NixConfig/configuration.nix  /home/krizdavezz/nixos/workinprogress 
       \n pushd /home/krizdavezz/nixos/workinprogress \n git add configuration.nix \n git commit -m 'updated config' \n git push \n popd "; 
       gg = "w3m google.com";
-      yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l";
+      yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right";
     };
   };
   # setting zsh as default shell
