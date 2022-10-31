@@ -102,8 +102,8 @@
       lo = "swaymsg output eDP-1 dpms off";
       ln = "swaymsg output eDP-1 dpms on";
       rus = "cd ~/rust/ \n nix-shell"; 
-      gp = "cp /home/krizdavezz/NixConfig/configuration.nix  /home/krizdavezz/nixos/workinprogress 
-      \n pushd /home/krizdavezz/nixos/workinprogress \n git add configuration.nix \n git commit -m 'updated config' \n git push \n popd "; 
+      gp = "cp /home/krizdavezz/NixConfig/configuration.nix  /home/krizdavezz/nixos/nixconfig 
+      \n pushd /home/krizdavezz/nixos/nixconfig \n git add configuration.nix \n git commit -m 'updated config' \n git push \n popd "; 
       gg = "w3m google.com";
       yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right";
     };
