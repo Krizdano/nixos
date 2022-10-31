@@ -13,6 +13,9 @@
     ];
    
   
+  #flakes
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
   # adb
   # programs.adb.enable = true;
   
@@ -413,90 +416,89 @@
        plugin = lualine-nvim; # statusline for neovim
        type = "lua";
        config = '' local cp = require("catppuccin.palettes").get_palette()
-local custom_catppuccin = require "lualine.themes.catppuccin"
-custom_catppuccin.normal.b.bg = cp.surface0
-custom_catppuccin.normal.c.bg = cp.base
-custom_catppuccin.insert.b.bg = cp.surface0
-custom_catppuccin.command.b.bg = cp.surface0
-custom_catppuccin.visual.b.bg = cp.surface0
-custom_catppuccin.replace.b.bg = cp.surface0
-custom_catppuccin.inactive.a.bg = cp.base
-custom_catppuccin.inactive.b.bg = cp.base
-custom_catppuccin.inactive.b.fg = cp.surface0
-custom_catppuccin.inactive.c.bg = cp.base 
-        require("lualine").setup {
-	options = {
-		theme = custom_catppuccin,
-		component_separators = "|",
-		section_separators = { left = "", right = ""},
-	},
-	sections = {
-		lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
-		lualine_b = { "filename", "branch", { "diff", colored = false } },
-		lualine_c = {},
-		lualine_x = {},
-		lualine_y = { "filetype", "progress" },
-		lualine_z = { { "location", separator = { right = ""}, left_padding = 2 } },
-	},
-	inactive_sections = {
-		lualine_a = { "filename" },
-		lualine_b = {},
-		lualine_c = {},
-		lualine_x = {},
-		lualine_y = {},
-		lualine_z = {},
-	},
-	tabline = {
-		lualine_a = {
-			{
-				"buffers",
-				separator = { left = "", right = ""},
-				right_padding = 5,
-				top_padding = 5,
-				symbols = { alternate_file = "" },
-			},
-		},
-	},
-}
-'';
+                   local custom_catppuccin = require "lualine.themes.catppuccin"
+                   custom_catppuccin.normal.b.bg = cp.surface0
+                   custom_catppuccin.normal.c.bg = cp.base
+                   custom_catppuccin.insert.b.bg = cp.surface0
+                   custom_catppuccin.command.b.bg = cp.surface0
+                   custom_catppuccin.visual.b.bg = cp.surface0
+                   custom_catppuccin.replace.b.bg = cp.surface0
+                   custom_catppuccin.inactive.a.bg = cp.base
+                   custom_catppuccin.inactive.b.bg = cp.base
+                   custom_catppuccin.inactive.b.fg = cp.surface0
+                   custom_catppuccin.inactive.c.bg = cp.base 
+                   
+                  require("lualine").setup {
+                   options = {
+		    theme = custom_catppuccin,
+		    component_separators = "|",
+		    section_separators = { left = "", right = ""},
+                    },
+	          sections = {
+		    lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+		    lualine_b = { "filename", "branch", { "diff", colored = false } },
+		    lualine_c = {},
+		    lualine_x = {},
+		    lualine_y = { "filetype", "progress" },
+		    lualine_z = { { "location", separator = { right = ""}, left_padding = 2 } },
+                    },
+                  inactive_sections = {
+		    lualine_a = { "filename" },
+		    lualine_b = {},
+		    lualine_c = {},
+		    lualine_x = {},
+		    lualine_y = {},
+		    lualine_z = {},
+                    },
+                  tabline = {
+		   lualine_a = {
+                   {
+		    "buffers",
+                    separator = { left = "", right = ""},
+		    right_padding = 5,
+                    top_padding = 5,
+                    symbols = { alternate_file = "" },
+                    },
+                   },
+	          },
+                 }'';
      }
 
      {
        plugin = nvim-tree-lua; # side folder for neovim
        type = "lua";
        config = ''                    
-
-                      require("nvim-tree").setup{
-                     disable_netrw = true,
-	hijack_netrw = true,
-	open_on_tab = false,
-	hijack_cursor = true,
-	hijack_unnamed_buffer_when_opening = false,
-	update_cwd = true,
-	update_focused_file = {
-		enable = true,
-		update_cwd = false,
-	},
-	sync_root_with_cwd = true,
-	view = {
-		width = 25,
-		hide_root_folder = false,
-	},
-	git = {
-		enable = false,
-		ignore = true,
-	},
-	actions = {
-		open_file = {
-			resize_window = true,
-		},
-	},
-	renderer = {
-		indent_markers = {
-			enable = false,
-		},
-	},
-} '';
+                  require("nvim-tree").setup{
+                   disable_netrw = true,
+	           hijack_netrw = true,
+	           open_on_tab = false,
+	           hijack_cursor = true,
+	           hijack_unnamed_buffer_when_opening = false,
+	           update_cwd = true,
+	           update_focused_file = {
+                    enable = true,
+                    update_cwd = false,
+                    },
+	           sync_root_with_cwd = true,
+                   view = {
+		    width = 25,
+		    hide_root_folder = false,
+                    },
+	           git = {
+		   enable = false,
+		   ignore = true,
+                   },
+	           actions = {
+		    open_file = {
+		     resize_window = true,
+		    },
+	           },
+	           renderer = {
+                   indent_markers = {
+                    enable = false,
+                    },
+                  },
+                 } '';
      }
     ];
   };
@@ -507,76 +509,76 @@ custom_catppuccin.inactive.c.bg = cp.base
   programs.kitty = {
     enable = true;
     extraConfig = "
-# The basic colors
-foreground              #CDD6F4
-background              #161718
-selection_foreground    #1E1E2E
-selection_background    #F5E0DC
+                    # The basic colors
+                    foreground              #CDD6F4
+                    background              #161718
+                    selection_foreground    #1E1E2E
+                    selection_background    #F5E0DC
 
-# Cursor colors
-cursor                  #F5E0DC
-cursor_text_color       #1E1E2E
+                    # Cursor colors
+                    cursor                  #F5E0DC
+                    cursor_text_color       #1E1E2E
 
-# URL underline color when hovering with mouse
-url_color               #F5E0DC
+                    # URL underline color when hovering with mouse
+                    url_color               #F5E0DC
 
-# Kitty window border colors
-active_border_color     #B4BEFE
-inactive_border_color   #6C7086
-bell_border_color       #F9E2AF
+                    # Kitty window border colors
+                    active_border_color     #B4BEFE
+                    inactive_border_color   #6C7086
+                    bell_border_color       #F9E2AF
 
-# OS Window titlebar colors
-wayland_titlebar_color system
-macos_titlebar_color system
+                    # OS Window titlebar colors
+                    wayland_titlebar_color system
+                    macos_titlebar_color system
 
-# Tab bar colors
-active_tab_foreground   #11111B
-active_tab_background   #CBA6F7
-inactive_tab_foreground #CDD6F4
-inactive_tab_background #181825
-tab_bar_background      #11111B
+                    # Tab bar colors
+                    active_tab_foreground   #11111B
+                    active_tab_background   #CBA6F7
+                    inactive_tab_foreground #CDD6F4
+                    inactive_tab_background #181825
+                    tab_bar_background      #11111B
 
-# Colors for marks (marked text in the terminal)
-mark1_foreground #1E1E2E
-mark1_background #B4BEFE
-mark2_foreground #1E1E2E
-mark2_background #CBA6F7
-mark3_foreground #1E1E2E
-mark3_background #74C7EC
+                    # Colors for marks (marked text in the terminal)
+                    mark1_foreground #1E1E2E
+                    mark1_background #B4BEFE
+                    mark2_foreground #1E1E2E
+                    mark2_background #CBA6F7
+                    mark3_foreground #1E1E2E
+                    mark3_background #74C7EC
 
-# The 16 terminal colors
+                    # The 16 terminal colors
 
-# black
-color0 #45475A
-color8 #585B70
+                    # black
+                    color0 #45475A
+                    color8 #585B70
 
-# red
-color1 #F38BA8
-color9 #F38BA8
+                    # red
+                    color1 #F38BA8
+                    color9 #F38BA8
 
-# green
-color2  #A6E3A1
-color10 #A6E3A1
+                    # green
+                    color2  #A6E3A1
+                    color10 #A6E3A1
 
-# yellow
-color3  #F9E2AF
-color11 #F9E2AF
+                    # yellow
+                    color3  #F9E2AF
+                    color11 #F9E2AF
 
-# blue
-color4  #89B4FA
-color12 #89B4FA
+                    # blue
+                    color4  #89B4FA
+                    color12 #89B4FA
 
-# magenta
-color5  #F5C2E7
-color13 #F5C2E7
+                    # magenta
+                    color5  #F5C2E7
+                    color13 #F5C2E7
 
-# cyan
-color6  #94E2D5
-color14 #94E2D5
+                    # cyan
+                    color6  #94E2D5
+                    color14 #94E2D5
 
-# white
-color7  #BAC2DE
-color15 #A6ADC8
+                    # white
+                    color7  #BAC2DE
+                    color15 #A6ADC8
 
                   
                  \n background_opacity 0.6
@@ -694,12 +696,13 @@ color15 #A6ADC8
       
       keybindings = {     
        "mod4+b" = "exec firefox"; # opens firefox
-       "mod4+y" = "exec firefox https://www.youtube.com"; # opens youtube in firefox
-       "mod4+Shift+h" = "exec firefox https://mipmip.github.io/home-manager-option-search/";
+       "mod4+Shift+y" = "exec firefox https://www.youtube.com"; # opens youtube in firefox
+       "mod4+Shift+n" = "exec firefox https://mipmip.github.io/home-manager-option-search/";
        "mod4+n" = "exec firefox https://search.nixos.org/packages";
        "mod4+Shift+q" = "kill"; # close windows
        "mod4+Return" =  "exec kitty"; # open terminal (alacritty)
        "mod4+d" = "exec kitty --class=launcher -e /nix/store/hx3w4vf0ky19kwsaz8pmc7n38g3mii17-sway-launcher-desktop-1.6.0/bin/sway-launcher-desktop"; # bemeu 
+       "mod4+y" = "exec kitty --class=ytfzf -e ytfzf -t --thumb-viewer=kitty -l -s -f";
        "mod4+Shift+c" = "reload"; # reload sway
        
        # exit sway 
@@ -776,12 +779,12 @@ color15 #A6ADC8
           
     # extra configurations
     extraConfig = 
-     "exec autotiling \n
+    "exec autotiling \n
      exec inactive-windows-transparency.py \n 
      output * bg /home/krizdavezz/Pictures/wallpaper/three_squares.png fill \n
-     include /home/krizdavezz/.config/sway/extraconf 
-       ";
-  };
+     include /home/krizdavezz/.config/sway/extraconf";
+      
+  }; # end of sway
       
   # waybar
   programs.waybar = {
