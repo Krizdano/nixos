@@ -34,7 +34,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   
-  # kernel
+  # get latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
  
@@ -66,7 +66,7 @@
     xkbVariant = "";
   };
   
-  # dconf 
+  # dconf (for gtk themes to work properly)
   programs.dconf = {
     enable = true;
   };
@@ -81,7 +81,7 @@
   };
 
 
-  # brightness
+  # laptop screen brightness
   programs.light.enable= true;
   
   # sound 
@@ -93,19 +93,27 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autosuggestions.enable = true;
-    #autocd = true;
-    #defaultKeymap = "vicmd";
+
     shellAliases = { # all shell aliases
-      conf = "vi /home/krizdavezz/NixConfig/configuration.nix";
-      re = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix";
-      update = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix --upgrade";
+      conf = "vi /home/krizdavezz/NixConfig/configuration.nix"; # nixos configuration
+      re = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix"; # rebuild nixos
+      update = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix --upgrade"; # update nixos
+      # turn on laptop screen on and off in sway
       lo = "swaymsg output eDP-1 dpms off";
       ln = "swaymsg output eDP-1 dpms on";
-      rus = "cd ~/rust/ \n nix-shell"; 
+      # nix-shell with rust development tools
+      rus = "cd ~/rust/
+            \n nix-shell"; 
+      # update configuation.nix to git repository
       gp = "cp /home/krizdavezz/NixConfig/configuration.nix  /home/krizdavezz/nixos/nixconfig 
-      \n pushd /home/krizdavezz/nixos/nixconfig \n git add configuration.nix \n git commit -m 'updated config' \n git push \n popd "; 
+            \n pushd /home/krizdavezz/nixos/nixconfig
+            \n git add configuration.nix 
+            \n git commit -m 'updated config' 
+            \n git push 
+            \n popd "; 
+      # w3m with google search 
       gg = "w3m google.com";
-      yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right";
+      yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right"; # youtube 
     };
   };
   # setting zsh as default shell
@@ -115,7 +123,7 @@
 
   # doas
   security.doas.enable = true;
-  security.sudo.enable = false;
+  security.sudo.enable = false; # disable sudo
   # Configure doas
   security.doas.extraRules = [{
     users = [ "krizdavezz" ];
@@ -127,25 +135,21 @@
   # fonts
   fonts.fonts = with pkgs; [
    (nerdfonts.override { fonts = [ "Ubuntu" ]; })
-  ];
+  ]; # for swaybar config
 
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # flatpak
-  # services.flatpak.enable = true;
 
-  # remove xterm terminal
+  # remove xterm terminal 
   services.xserver.excludePackages = [pkgs.xterm];
 
-  # awesome
-  # services.xserver.windowManager.awesome.enable = true;
-   
+
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   # services.gnome.core-utilities.enable = false; #gnome without apps
-  services.xserver.displayManager.lightdm.enable = false; #disables ldm 
+  services.xserver.displayManager.lightdm.enable = false; #disables ldm  which is enabled by default
   
 
   # exclude package gnome 
@@ -162,29 +166,12 @@
      neofetch
      gnome.gnome-boxes
      htop
-     #git
-     gdu
+     gdu # disk management
      gimp
      mimeo
-     #vscode-fhs
-     tdesktop
-    # gnome.gnome-tweaks
+     tdesktop # telegram
      firefox-wayland 
-     #themes
-     whitesur-gtk-theme
-     tela-circle-icon-theme
-     libsForQt5.qt5ct
-     
-     #rust
-     #rustup
-
-     #awesome lua
-     #luaPackages.luarocks
-     #luaPackages.luadbi-mysql
-      
      #sway
-     glib # gsettings
-     #gnome.adwaita-icon-theme  # default gnome cursors 
   ];
 
    
@@ -198,9 +185,6 @@
   # Gtk theme 
   #environment.sessionVariables = {GTK_THEME="WhiteSur-Dark-solid";};
  
-  # kdeconnect 
-  #programs.kdeconnect.enable = true;
-
   # pipewire 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -293,7 +277,27 @@
   };
 
 
-  # lf
+
+  home.packages = with pkgs; [
+   pulseaudio   
+   swaylock
+   swayidle
+   sway-launcher-desktop
+   wl-clipboard
+   mako # notifications
+   w3m # terminal browser
+   ytfzf # terminal youtube 
+   bemenu # search bar
+   wl-clipboard
+   fzf
+   wf-recorder
+   sway-contrib.inactive-windows-transparency
+   glib # gsettings
+   slurp
+   autotiling #sway autotiling
+  ];
+  
+  # lf terminal filemanager
   programs.lf = {
    enable = true; 
    keybindings = { # certain keybindings
@@ -304,10 +308,11 @@
    };
   };
 
-  # starship-prompt
+  # starship shell prompt
   programs.starship = {
    enable = true;
-   enableZshIntegration = true;
+   enableZshIntegration = true; # enable zsh integration 
+   # config
    settings = {
     add_newline = false;
     username = {
@@ -362,12 +367,27 @@
   # neovim
   programs.neovim = {
    enable = true;
-   viAlias = true;
-   withNodeJs = true;
-   extraConfig = "  \n set relativenumber 
-                    \n set ignorecase 
-                    \n colorscheme catppuccin
-                    ";
+   viAlias = true; 
+   withNodeJs = true; # for coc plugin
+   extraConfig = ''  set relativenumber 
+                     set ignorecase 
+                     set splitright
+                     set splitbelow
+                     set termguicolors
+                     colorscheme catppuccin
+                     map j gj
+                     map k gk
+                     let mapleader = " "
+                     map <Leader>j :bp<CR>
+                     map <Leader>k :bn<CR>
+                     map <Leader>q :bp<CR>:bd #<CR>
+                     map <Leader>z :split term://zsh<CR>
+                     map <Leader>t :NvimTreeFocus<CR>
+                     map <Leader>w <C-w>k
+                     map <Leader>a <C-w>h
+                     map <Leader>s <C-w>j
+                     map <Leader>d <C-w>l
+                    '';
    # coc settings
    coc = {
      enable = true;
@@ -379,18 +399,17 @@
                         \ coc#refresh()''; }; # using tab for completion
     #plugins
     plugins = with pkgs.vimPlugins; [
-       #nightfox-nvim #theme 
        vim-nix #nix language syntaxhighlighting 
        coc-rust-analyzer # rust language support  
 
               {
-         plugin = nvim-autopairs;
+         plugin = nvim-autopairs; # auto pair parantheses and quotes
          type = "lua";
          config = ''require("nvim-autopairs").setup {}'';
        }
        
             {
-       plugin = catppuccin-nvim;
+       plugin = catppuccin-nvim; # theme
        type = "lua";
        config = ''require("catppuccin").setup {
          flavour = "mocha",
@@ -428,13 +447,13 @@
                    custom_catppuccin.inactive.b.fg = cp.surface0
                    custom_catppuccin.inactive.c.bg = cp.base 
                    
-                  require("lualine").setup {
-                   options = {
+                   require("lualine").setup {
+                    options = {
 		    theme = custom_catppuccin,
 		    component_separators = "|",
 		    section_separators = { left = "", right = ""},
                     },
-	          sections = {
+	           sections = {
 		    lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
 		    lualine_b = { "filename", "branch", { "diff", colored = false } },
 		    lualine_c = {},
@@ -442,7 +461,7 @@
 		    lualine_y = { "filetype", "progress" },
 		    lualine_z = { { "location", separator = { right = ""}, left_padding = 2 } },
                     },
-                  inactive_sections = {
+                   inactive_sections = {
 		    lualine_a = { "filename" },
 		    lualine_b = {},
 		    lualine_c = {},
@@ -450,19 +469,19 @@
 		    lualine_y = {},
 		    lualine_z = {},
                     },
-                  tabline = {
-		   lualine_a = {
-                   {
-		    "buffers",
-                    separator = { left = "", right = ""},
-		    right_padding = 5,
-                    top_padding = 5,
-                    symbols = { alternate_file = "" },
+                   tabline = {
+		    lualine_a = {
+                    {
+		     "buffers",
+                     separator = { left = "", right = ""},
+		     right_padding = 5,
+                     top_padding = 5,
+                     symbols = { alternate_file = "" },
                     },
                    },
 	          },
                  }'';
-     }
+     } # end of lualine config
 
      {
        plugin = nvim-tree-lua; # side folder for neovim
@@ -475,33 +494,39 @@
 	           hijack_cursor = true,
 	           hijack_unnamed_buffer_when_opening = false,
 	           update_cwd = true,
+                   
 	           update_focused_file = {
                     enable = true,
                     update_cwd = false,
-                    },
+                   },
+
 	           sync_root_with_cwd = true,
+                   
                    view = {
 		    width = 25,
 		    hide_root_folder = false,
-                    },
-	           git = {
-		   enable = false,
-		   ignore = true,
                    },
+
+	           git = {
+		    enable = false,
+		    ignore = true,
+                   },
+
 	           actions = {
 		    open_file = {
 		     resize_window = true,
 		    },
 	           },
+
 	           renderer = {
-                   indent_markers = {
+                    indent_markers = {
                     enable = false,
                     },
-                  },
-                 } '';
-     }
-    ];
-  };
+                   },
+                  } '';
+     } # end of nvim tree config
+    ]; # end of neovim plugins
+  }; # end of neovim
 
 
 
@@ -584,14 +609,14 @@
                  \n background_opacity 0.6
                  \n dynamic_background_opacity yes
                  \n confirm_os_window_close 0 ";
-
   };
 
-  # mpv
+
+  # mpv video player
   programs.mpv = {
     enable = true;
     scripts = with pkgs.mpvScripts; [
-
+     # for mpv scripts
     ];
   };
 
@@ -614,40 +639,21 @@
     indicator = true;
   };
 
+
+
+  # themes
   gtk = {
     enable = true;
     theme =  { 
     name =  "Catppuccin-Mocha";
         
     };
-
-    
   };
 
   qt = {
     enable = true;
     platformTheme = "gtk";
   };
-
-
-  home.packages = with pkgs; [
-   pulseaudio   
-   swaylock
-   swayidle
-   sway-launcher-desktop
-   wl-clipboard
-   mako # notifications
-   w3m # terminal browser
-   ytfzf # terminal youtube 
-   bemenu # search bar
-   wl-clipboard
-   fzf
-   wf-recorder
-   sway-contrib.inactive-windows-transparency
-   #rust-analyzer #rust-analyzer 
-   slurp
-   autotiling #sway autotiling
-  ];
 
 
 
@@ -691,18 +697,17 @@
         };
 
       };
-
-      assigns = {"1: web" = [{ class = "^mpv$"; }];};
-      
+      # keybindings 
       keybindings = {     
        "mod4+b" = "exec firefox"; # opens firefox
        "mod4+Shift+y" = "exec firefox https://www.youtube.com"; # opens youtube in firefox
-       "mod4+Shift+n" = "exec firefox https://mipmip.github.io/home-manager-option-search/";
-       "mod4+n" = "exec firefox https://search.nixos.org/packages";
+       "mod4+Shift+n" = "exec firefox https://mipmip.github.io/home-manager-option-search/"; # opens home-manager search
+       "mod4+n" = "exec firefox https://search.nixos.org/packages"; # opens nixos search 
        "mod4+Shift+q" = "kill"; # close windows
        "mod4+Return" =  "exec kitty"; # open terminal (alacritty)
-       "mod4+d" = "exec kitty --class=launcher -e /nix/store/hx3w4vf0ky19kwsaz8pmc7n38g3mii17-sway-launcher-desktop-1.6.0/bin/sway-launcher-desktop"; # bemeu 
-       "mod4+y" = "exec kitty --class=ytfzf -e ytfzf -t --thumb-viewer=kitty -l -s -f";
+       "mod4+d" = "exec kitty --class=launcher -e /nix/store/hx3w4vf0ky19kwsaz8pmc7n38g3mii17-sway-launcher-desktop-1.6.0/bin/sway-launcher-desktop"; # sway-launcher-desktop 
+       "mod4+y" = "exec kitty --class=ytfzf -e ytfzf -t --thumb-viewer=kitty -l -s -f --preview-side=right"; # youtube in terminal
+       "mod4+s" = "exec kitty --class=ytfzf -e ytfzf -t --thumb-viewer=kitty -l -s -f -c SI --preview-side=right"; # youtube subscriptions in terminal
        "mod4+Shift+c" = "reload"; # reload sway
        
        # exit sway 
@@ -713,7 +718,7 @@
        "mod4+Up" = "focus up";
        "mod4+Right" = "focus right";
        "mod4+Left" = "focus left";
-       # vi modvi mode
+       # use vim keys to move around
        "mod4+j" = "focus down";
        "mod4+k" = "focus up";
        "mod4+l" = "focus right";
