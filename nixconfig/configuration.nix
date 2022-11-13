@@ -9,7 +9,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
    
   
@@ -96,8 +95,10 @@
 
     shellAliases = { # all shell aliases
       conf = "vi /home/krizdavezz/NixConfig/configuration.nix"; # nixos configuration
-      re = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix"; # rebuild nixos
-      update = "doas nixos-rebuild switch -I nixos-config=/home/krizdavezz/NixConfig/configuration.nix --upgrade"; # update nixos
+      re = "doas nixos-rebuild --flake ~/NixConfig switch"; # rebuild nixos using flake
+      update = "pushd ~/NixConfig 
+                \n nix flake update
+                \n popd"; # update nixos using flakes
       # turn on laptop screen on and off in sway
       lo = "swaymsg output eDP-1 dpms off";
       ln = "swaymsg output eDP-1 dpms on";
@@ -713,6 +714,10 @@
        # exit sway 
        "mod4+shift+e" = "exec swaynag - t warning -m 'you pressed the exit shortcut.Do you really want to exit sway?' -B 'yes' 'swaymsg exit'"; 
        
+       #scratchpad
+       "mod4+Shift+minus" = "move scratchpad";
+       "mod4+minus" = "scratchpad show";
+
        # moving aroud
        "mod4+Down" = "focus down";
        "mod4+Up" = "focus up";
@@ -794,7 +799,7 @@
   # waybar
   programs.waybar = {
     enable = true;   
-    style= (builtins.readFile  /home/krizdavezz/.config/waybar/style.css);
+    #style= (builtins.readFile  /home/krizdavezz/.config/waybar/style.css);
   };
 
 
