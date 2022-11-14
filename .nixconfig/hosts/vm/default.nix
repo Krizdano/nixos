@@ -1,16 +1,12 @@
-#  ──────────────────────────────────────────
-#    specific system configuration for my:           
-#                                                
-#            ╦  ╔═╗╔═╗╔╦╗╔═╗╔═╗                             
-#            ║  ╠═╣╠═╝ ║ ║ ║╠═╝                              
-#            ╩═╝╩ ╩╩   ╩ ╚═╝╩  
+#
+# specific system configuration for my laptop
 #
 #  flake.nix
 #   └── ./hosts
 #         └─ ./laptop
 #               ├─ default.nix *
 #               └─ hardware-configuration.nix 
-#  ──────────────────────────────────────────
+
 
 { config, pkgs, lib, user, location, ... }:
 
@@ -107,14 +103,12 @@
   ];
 
   
-#  ──────────────────────────────────────────
-#                                                                                      
-#    ╦ ╦╔═╗╔╦╗╔═╗   ╔╦╗╔═╗╔╗╔╔═╗╔═╗╔═╗╦═╗
-#    ╠═╣║ ║║║║║╣ ───║║║╠═╣║║║╠═╣║ ╦║╣ ╠╦╝ 
-#    ╩ ╩╚═╝╩ ╩╚═╝   ╩ ╩╩ ╩╝╚╝╩ ╩╚═╝╚═╝╩╚═    
-#        Begin home-manager directives
-#                                                                                      
-#  ──────────────────────────────────────────
+
+
+#  ╦ ╦╔═╗╔╦╗╔═╗   ╔╦╗╔═╗╔╗╔╔═╗╔═╗╔═╗╦═╗
+#  ╠═╣║ ║║║║║╣ ───║║║╠═╣║║║╠═╣║ ╦║╣ ╠╦╝ 
+#  ╩ ╩╚═╝╩ ╩╚═╝   ╩ ╩╩ ╩╝╚╝╩ ╩╚═╝╚═╝╩╚═    
+     # Begin home-manager directives
 
   home-manager = {
     #useUserPackages = true;
