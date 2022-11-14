@@ -112,7 +112,7 @@
             \n nix-shell"; 
       # update configuation.nix to git repository
       gp = "cp -r ~/NixConfig/  ~/nixos/ 
-            \n pushd ~/nixos/NixConfig
+            \n pushd ~/nixos
             \n git add NixConfig 
             \n git commit -m 'updated config' 
             \n git push 
