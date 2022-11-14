@@ -1,4 +1,12 @@
+# profile types (laptop or vm) used to build Nixos
 
+#  flake.nix 
+#   └─ ./hosts  
+#       ├─ default.nix *
+#       ├─ configuration.nix
+#       └─ ./laptop OR ./vm
+#             └─ ./default.nix
+#     
 
    {lib, home-manager, nixpkgs, user, location, ... }: 
 

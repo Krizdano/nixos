@@ -1,3 +1,10 @@
+# My personal Nixos flake 
+# this flake manages my Nixos Configuration
+
+#  flake.nix *             
+#   ├─ ./hosts
+#   │   └─ default.nix
+
 { 
   description = "My personal Nixos Configuration";
 
