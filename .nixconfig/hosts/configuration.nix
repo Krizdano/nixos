@@ -1,9 +1,13 @@
-# Main configuration file for my Nixos setup
-
-
-#  flake.nix
-#   ├─ ./hosts
-#         └─ configuration.nix *
+#  ──────────────────────────────────────────
+#        ╔╦╗╔═╗╦╔╗╔╔═╗╔═╗╔╗╔╔═╗╦╔═╗
+#        ║║║╠═╣║║║║║  ║ ║║║║╠╣ ║║ ╦
+#        ╩ ╩╩ ╩╩╝╚╝╚═╝╚═╝╝╚╝╚  ╩╚═╝
+#         Main configuration file 
+#
+#         flake.nix
+#         ├─ ./hosts
+#               └─ configuration.nix *
+#  ──────────────────────────────────────────
 
 { config, pkgs, lib, user, ... }:
 
