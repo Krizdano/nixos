@@ -16,42 +16,8 @@
   nix.package = pkgs.nixFlakes;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # adb
-  # programs.adb.enable = true;
-  
-  #opengl
- # hardware.opengl= {
-  #  enable = true;
-  #};
-
-  # bluetooth 
-  #hardware.bluetooth.enable = true;
-  #services.blueman.enable = true;
-
-  # Bootloader.
-  #boot.loader.systemd-boot.enable = true;
-  #boot.loader.efi.canTouchEfiVariables = true;
-  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  
-  # get latest kernel
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-
- 
-  #networking.hostName = "nixos"; # Define your hostname.
-
- 
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
- 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
- 
   # Enable networking
   networking.networkmanager.enable = true;
-
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -81,47 +47,8 @@
   };
 
 
-  # laptop screen brightness
-  #programs.light.enable= true;
-  
   # sound 
   # hardware.pulseaudio.enable = false;  
-
-  # shell(zsh)
-  #programs.zsh = {
-   # enable = true;
-    #enableCompletion = true;
-    #syntaxHighlighting.enable = true;
-    #autosuggestions.enable = true;
-
-    #shellAliases = { # all shell aliases
-     # conf = "vi /home/krizdavezz/NixConfig/configuration.nix"; # nixos configuration
-      #re = "doas nixos-rebuild --flake ~/NixConfig switch"; # rebuild nixos using flake
-      #update = "pushd ~/NixConfig 
-       #         \n nix flake update
-        #        \n popd"; # update nixos using flakes
-      # turn on laptop screen on and off in sway
-      #lo = "swaymsg output eDP-1 dpms off";
-      #ln = "swaymsg output eDP-1 dpms on";
-      # nix-shell with rust development tools
-      #rus = "cd ~/rust/
-      #      \n nix-shell"; 
-      # update configuation.nix to git repository
-     # gp = "cp /home/krizdavezz/NixConfig/configuration.nix  /home/krizdavezz/nixos/nixconfig 
-      #      \n pushd /home/krizdavezz/nixos/nixconfig
-      #      \n git add configuration.nix 
-      #      \n git commit -m 'updated config' 
-      #      \n git push 
-      #      \n popd "; 
-      ## w3m with google search 
-      #gg = "w3m google.com";
-      #yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right"; # youtube 
-    #};
-  #};
-  # setting zsh as default shell
-  #users.defaultUserShell = pkgs.zsh;
- 
-
 
   # doas
   security.doas.enable = true;
@@ -140,10 +67,6 @@
   ]; # for swaybar config
 
 
-  # Allow unfree packages
-  #nixpkgs.config.allowUnfree = true;
-
-
   # remove xterm terminal 
   services.xserver.excludePackages = [pkgs.xterm];
 
@@ -159,23 +82,6 @@
   # pkgs.gnome.gnome-session
   # ];
      
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  #environment.systemPackages = with pkgs; [
-  # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   #  wget
-   #  neofetch
-   #  gnome.gnome-boxes
-   #  htop
-   #  gdu # disk management
-   #  gimp
-   #  mimeo
-   #  tdesktop # telegram
-   #  firefox-wayland 
-     #sway
-  #];
-
    
   # qt5
   qt5.platformTheme = "qt5ct";
@@ -187,6 +93,7 @@
     VISUAL = "nvim" ;
     QT_QPA_PLATFORMTHEME = "qt5ct";
   };
+
   # Gtk theme 
   #environment.sessionVariables = {GTK_THEME="WhiteSur-Dark-solid";};
  
