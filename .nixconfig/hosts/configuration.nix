@@ -48,7 +48,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "audio" "adbusers" ];
     shell = pkgs.zsh;
     packages = with pkgs; [];
   };
