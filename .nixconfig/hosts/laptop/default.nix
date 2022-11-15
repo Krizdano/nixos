@@ -55,41 +55,6 @@
   # laptop screen brightness
   programs.light.enable= true;
   
-  # shell(zsh)
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    syntaxHighlighting.enable = true;
-    autosuggestions.enable = true;
-
-    shellAliases = { # all shell aliases
-      conf = "vi ~/.nixconfig/hosts/laptop/default.nix"; # nixos configuration
-      # rebuild nixos using flake
-      re = "pushd ~/.nixconfig
-           \n doas nixos-rebuild switch --flake '.#laptop'
-           \n popd"; 
-      # update nixos using flakes
-      update = "pushd ~/.nixconfig 
-                \n nix flake update
-                \n popd"; 
-      # turn on laptop screen on and off in sway
-      lo = "swaymsg output eDP-1 dpms off";
-      ln = "swaymsg output eDP-1 dpms on";
-      # nix-shell with rust development tools
-      rus = "cd ~/rust/
-            \n nix-shell"; 
-      # update configuation.nix to git repository
-      gp = "cp -r ~/.nixconfig/  ~/nixos/ 
-            \n pushd ~/nixos
-            \n git add .nixconfig 
-            \n git commit -m 'updated config' 
-            \n git push 
-            \n popd "; 
-      # w3m with google search 
-      gg = "w3m google.com";
-      yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right"; # youtube 
-    };
-  };
  
 
   # List packages installed in system profile. To search, run:
@@ -125,6 +90,7 @@
 
   # Everything inside here is managed by Home Manager!
 
+  imports  = [ ../../modules/shell/zsh.nix ];
   # version
   home.stateVersion = "22.05";
 
@@ -178,6 +144,35 @@
      "DD" = "delete";
    };
   };
+
+  #zsh
+    programs.zsh.shellAliases = { # all shell aliases
+      conf = "vi ~/.nixconfig/hosts/laptop/default.nix"; # nixos configuration
+      # rebuild nixos using flake
+      re = "pushd ~/.nixconfig
+           \n doas nixos-rebuild switch --flake '.#laptop'
+           \n popd"; 
+      # update nixos using flakes
+      update = "pushd ~/.nixconfig 
+                \n nix flake update
+                \n popd"; 
+      # turn on laptop screen on and off in sway
+      lo = "swaymsg output eDP-1 dpms off";
+      ln = "swaymsg output eDP-1 dpms on";
+      # nix-shell with rust development tools
+      rus = "cd ~/rust/
+            \n nix-shell"; 
+      # update configuation.nix to git repository
+      gp = "cp -r ~/.nixconfig/  ~/nixos/ 
+            \n pushd ~/nixos
+            \n git add .nixconfig 
+            \n git commit -m 'updated config' 
+            \n git push 
+            \n popd "; 
+      # w3m with google search 
+      gg = "w3m google.com";
+      yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right"; # youtube 
+    };
 
   # starship shell prompt
   programs.starship = {
