@@ -147,9 +147,7 @@
 
   #zsh
     programs.zsh.shellAliases = { # all shell aliases
-      confzsh = "vi ~/.nixconfig/modules/shell/zsh.nix";
-      config = "~/config.sh";
-      conf = "vi ~/.nixconfig/hosts/laptop/default.nix"; # nixos configuration
+      conf = "~/config.sh"; # nixos configuration
       # rebuild nixos using flake
       re = "pushd ~/.nixconfig
            \n doas nixos-rebuild switch --flake '.#laptop'
