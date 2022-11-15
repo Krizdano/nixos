@@ -1,11 +1,16 @@
+#   ──────────────────────────────────────────
+#    specific system configuration for my: 
 #
-# specific system configuration for my virtual machine 
+#   ╦  ╦╦╦═╗╔╦╗╦ ╦╔═╗╦    ╔╦╗╔═╗╔═╗╦ ╦╦╔╗╔╔═╗
+#   ╚╗╔╝║╠╦╝ ║ ║ ║╠═╣║    ║║║╠═╣║  ╠═╣║║║║║╣ 
+#    ╚╝ ╩╩╚═ ╩ ╚═╝╩ ╩╩═╝  ╩ ╩╩ ╩╚═╝╩ ╩╩╝╚╝╚═╝
 #
 #  flake.nix
 #   └── ./hosts
 #         └─ ./laptop
 #               ├─ default.nix *
 #               └─ hardware-configuration.nix 
+#   ──────────────────────────────────────────
 
 
 { config, pkgs, lib, user, location, ... }:
@@ -96,12 +101,14 @@
   ];
 
   
-
-
-#  ╦ ╦╔═╗╔╦╗╔═╗   ╔╦╗╔═╗╔╗╔╔═╗╔═╗╔═╗╦═╗
-#  ╠═╣║ ║║║║║╣ ───║║║╠═╣║║║╠═╣║ ╦║╣ ╠╦╝ 
-#  ╩ ╩╚═╝╩ ╩╚═╝   ╩ ╩╩ ╩╝╚╝╩ ╩╚═╝╚═╝╩╚═    
-     # Begin home-manager directives
+#  ──────────────────────────────────────────
+#                                                                     #                 
+#    ╦ ╦╔═╗╔╦╗╔═╗   ╔╦╗╔═╗╔╗╔╔═╗╔═╗╔═╗╦═╗
+#    ╠═╣║ ║║║║║╣ ───║║║╠═╣║║║╠═╣║ ╦║╣ ╠╦╝ 
+#    ╩ ╩╚═╝╩ ╩╚═╝   ╩ ╩╩ ╩╝╚╝╩ ╩╚═╝╚═╝╩╚═    
+#        Begin home-manager directives
+#                                                                     #                 
+#  ──────────────────────────────────────────
 
   home-manager = {
     #useUserPackages = true;
@@ -561,7 +568,7 @@
        "mod4+n" = "exec firefox https://search.nixos.org/packages"; # opens nixos search 
        "mod4+Shift+q" = "kill"; # close windows
        "mod4+Return" =  "exec kitty"; # open terminal (alacritty)
-       "mod4+d" = "exec kitty --class=launcher -e /nix/store/hx3w4vf0ky19kwsaz8pmc7n38g3mii17-sway-launcher-desktop-1.6.0/bin/sway-launcher-desktop"; # sway-launcher-desktop 
+       "mod4+d" = "exec kitty --class=launcher -e sway-launcher-desktop"; # sway-launcher-desktop 
        "mod4+y" = "exec kitty --class=ytfzf -e ytfzf -t --thumb-viewer=kitty -l -s -f --preview-side=right"; # youtube in terminal
        "mod4+s" = "exec kitty --class=ytfzf -e ytfzf -t --thumb-viewer=kitty -l -s -f -c SI --preview-side=right"; # youtube subscriptions in terminal
        "mod4+Shift+c" = "reload"; # reload sway
