@@ -83,9 +83,9 @@
     #useGlobalPkgs = true;
     users.${user} = { config, pkgs, inputs, ... }: {
 
-      imports = [
-        ../../modules/shell/zsh.nix
-      ];
+      imports = 
+      [  ../../modules/shell/zsh.nix ];
+      
   # Everything inside here is managed by Home Manager!
 
   # version
@@ -173,7 +173,6 @@
       gg = "w3m google.com";
       yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right"; # youtube 
     };
-  };
 
  
   # starship shell prompt
