@@ -1,5 +1,5 @@
 #
-# specific system configuration for my laptop
+# specific system configuration for my virtual machine 
 #
 #  flake.nix
 #   └── ./hosts
@@ -634,7 +634,7 @@
        
       # output      
       output = {  # external monitor
-       HDMI-A-1 = { 
+       Virtual-1 = { 
         mode = "1366x768";
         bg =  "/home/krizdavezz/Pictures/wallpapers/three_squares.png fill";        
         position = "0,1920";
