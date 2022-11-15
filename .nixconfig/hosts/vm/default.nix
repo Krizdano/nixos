@@ -83,6 +83,9 @@
     #useGlobalPkgs = true;
     users.${user} = { config, pkgs, inputs, ... }: {
 
+      imports = [
+        ../../modules/shell/zsh.nix
+      ];
   # Everything inside here is managed by Home Manager!
 
   # version
@@ -140,14 +143,14 @@
   };
 
   # shell(zsh)
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    enableSyntaxHighlighting = true;
-    enableAutosuggestions = true;
-    initExtra = ''eval "$(starship init zsh)" '';
+  #programs.zsh = {
+   # enable = true;
+   # enableCompletion = true;
+   # enableSyntaxHighlighting = true;
+   # enableAutosuggestions = true;
+   # initExtra = ''eval "$(starship init zsh)" '';
 
-    shellAliases = { # all shell aliases
+    programs.zsh.shellAliases = { # all shell aliases
       conf = "vi ~/.nixconfig/hosts/vm/default.nix"; # nixos configuration
       # rebuild nixos using flake
       re = "pushd ~/.nixconfig
