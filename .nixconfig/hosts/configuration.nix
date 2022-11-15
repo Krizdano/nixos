@@ -94,11 +94,15 @@
   qt5.platformTheme = "qt5ct";
   qt5.style = "gtk2";
 
-  environment.variables = {
+  environment = { 
+    pathsToLink = [ "share/zsh" ];
+    variables = {
     TERMINAL ="kitty";
     EDITOR = "nvim" ;
     VISUAL = "nvim" ;
     QT_QPA_PLATFORMTHEME = "qt5ct";
+  };
+
   };
 
   # Gtk theme 

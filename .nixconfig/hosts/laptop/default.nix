@@ -88,9 +88,10 @@
     #useGlobalPkgs = true;
     users.${user} = { config, pkgs, inputs, ... }: {
 
+      imports = [ ../../modules/shell/zsh.nix ];
   # Everything inside here is managed by Home Manager!
 
-  imports  = [ ../../modules/shell/zsh.nix ];
+ # imports  = [ ../../modules/shell/zsh.nix ];
   # version
   home.stateVersion = "22.05";
 
@@ -145,6 +146,7 @@
    };
   };
 
+
   #zsh
     programs.zsh.shellAliases = { # all shell aliases
       conf = "~/config.sh"; # nixos configuration
@@ -169,10 +171,13 @@
             \n git commit -m 'updated config' 
             \n git push 
             \n popd "; 
+
       # w3m with google search 
       gg = "w3m google.com";
       yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right"; # youtube 
     };
+
+
 
   # starship shell prompt
   programs.starship = {
