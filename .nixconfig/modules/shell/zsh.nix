@@ -8,7 +8,8 @@
     enableCompletion = true;
     enableSyntaxHighlighting = true;
     enableAutosuggestions = true;
-    initExtra = ''eval "$(starship init zsh)" '';
+    initExtra = ''eval "$(starship init zsh)" \n 
+                  unsetopt BEEP'';
   };
 }
 
