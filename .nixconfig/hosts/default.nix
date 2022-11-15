@@ -34,7 +34,7 @@
      };
      vm = lib.nixosSystem {
        inherit system;
-       spercialArgs = { inherit user location; };
+       specialArgs = { inherit user location; };
        modules = [
          ./configuration.nix
          ./vm
