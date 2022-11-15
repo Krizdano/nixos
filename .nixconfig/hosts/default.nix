@@ -30,8 +30,7 @@
            home-manager.useGlobalPkgs= true;
            home-manager.useUserPackages = true;
          }
-       ];
-     };
+       ]; };
      vm = lib.nixosSystem {
        inherit system;
        specialArgs = { inherit user location; };
