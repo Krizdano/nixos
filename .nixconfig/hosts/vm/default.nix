@@ -636,7 +636,7 @@
       output = {  # external monitor
        HDMI-A-1 = { 
         mode = "1366x768";
-        bg =  "/home/krizdavezz/Pictures/wallpaper/three_squares.png fill";        
+        bg =  "/home/krizdavezz/Pictures/wallpapers/three_squares.png fill";        
         position = "0,1920";
        };
       };
@@ -646,7 +646,7 @@
     extraConfig = 
     "exec autotiling \n
      exec inactive-windows-transparency.py \n 
-     output * bg /home/krizdavezz/Pictures/wallpaper/three_squares.png fill \n
+     output * bg /home/krizdavezz/Pictures/wallpapers/three_squares.png fill \n
      include /home/krizdavezz/.config/sway/extraconf";
       
   }; # end of sway
