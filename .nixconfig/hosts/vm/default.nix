@@ -93,7 +93,7 @@
         ../../modules/programs/nvim.nix
         ../../modules/programs/starship.nix
         ../../modules/programs/waybar.nix
-
+        ../../modules/WindowManagers/sway.nix
      ];
       
   # Everything inside here is managed by Home Manager!
