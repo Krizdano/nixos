@@ -1,0 +1,17 @@
+#TabsToolbar
+{
+    visibility: collapse;
+}
+
+#back-button > .toolbarbutton-icon{
+  --backbutton-background: transparent !important;
+  border: none !important;
+}
+
+#back-button {
+  list-style-image: url("left-arrow.svg") !important;
+}
+
+#forward-button {
+  list-style-image: url("right-arrow.svg") !important;
+}
