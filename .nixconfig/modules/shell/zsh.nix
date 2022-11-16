@@ -12,7 +12,7 @@
     shellAliases = {
       ll = "ls -l"; 
       ls = "ls --color=always";
-      conf = "~/config.sh"; # nixos configuration
+      conf = "~/.config/scripts/config.sh"; # nixos configuration
       # rebuild nixos using flake
       re = "pushd ~/.nixconfig
            \n doas nixos-rebuild switch --flake '.#laptop'
