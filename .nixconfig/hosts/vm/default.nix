@@ -101,7 +101,7 @@
   # version
 
 
- wayland.WindowManager.sway.config.output = {  # external monitor
+ wayland.windowManager.sway.config.output = {  # external monitor
         "*".bg =  "~/.config/wallpapers/three_squares.png fill";        
         "Virtual-1".mode = "1366x768";
         "Virtual-1".position = "0,1920";
@@ -113,6 +113,14 @@
   home.packages = with pkgs; [
 
   ];
+
+  programs.zsh.shellAliases = { 
+      # rebuild nixos using flake
+      re = "pushd ~/.nixconfig
+           \n doas nixos-rebuild switch --flake '.#vm'
+           \n popd"; 
+    
+  };
   
   # themes
   gtk = {

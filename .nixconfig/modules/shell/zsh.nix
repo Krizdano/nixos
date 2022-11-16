@@ -13,11 +13,7 @@
       ll = "ls -l"; 
       ls = "ls --color=always";
       conf = "~/.config/scripts/config.sh"; # nixos configuration
-      # rebuild nixos using flake
-      re = "pushd ~/.nixconfig
-           \n doas nixos-rebuild switch --flake '.#laptop'
-           \n popd"; 
-      # update nixos using flakes
+            # update nixos using flakes
       update = "pushd ~/.nixconfig 
                 \n nix flake update
                 \n popd"; 

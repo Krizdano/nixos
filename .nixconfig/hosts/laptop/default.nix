@@ -120,6 +120,12 @@
 
   #zsh
     programs.zsh.shellAliases = { # all shell aliases
+    
+       # rebuild nixos using flake
+      re = "pushd ~/.nixconfig
+           \n doas nixos-rebuild switch --flake '.#laptop'
+           \n popd"; 
+
       # turn on laptop screen on and off in sway
       lo = "swaymsg output eDP-1 dpms off";
       ln = "swaymsg output eDP-1 dpms on";
