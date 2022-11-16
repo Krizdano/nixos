@@ -237,7 +237,8 @@
     ".config/ytfzf/subscriptions".source = ../config/ytfzf/subscriptions;
     ".config/waybar/config".source = ../config/waybar/config;
     ".config/waybar/style.css".source = ../config/waybar/style.css;
-    ".mozilla/firefox/profile.path/chrome".source = ../config/chrome; 
+    ".mozilla/firefox/mz4w5cdv.default/chrome".source = ../config/chrome; 
+    ".mozilla/firefox/profiles.ini".source = ../config/firefox/profiles.ini; 
 };
 
 
