@@ -65,6 +65,12 @@ case $flakeinput in
 
 esac
 
+elif [ $choice == all ] ||
+     [ $choice == a ] ||
+     [ $choice == 3 ];
+then 
+  vi ~/.nixconfig
+
 else 
  printf "i don't know what youre talking about"
 
