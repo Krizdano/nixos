@@ -9,6 +9,10 @@
     enableSyntaxHighlighting = true;
     enableAutosuggestions = true;
     autocd = true;
+    shellAliases = {
+      ll = "ls -l"; 
+      ls = "ls --color=always";
+    };
     completionInit = "autoload -Uz compinit
                       zstyle ':completion:*' menu select
                       zmodload zsh/complist
