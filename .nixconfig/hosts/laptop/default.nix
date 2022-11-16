@@ -149,15 +149,6 @@
 
   #zsh
     programs.zsh.shellAliases = { # all shell aliases
-      conf = "~/config.sh"; # nixos configuration
-      # rebuild nixos using flake
-      re = "pushd ~/.nixconfig
-           \n doas nixos-rebuild switch --flake '.#laptop'
-           \n popd"; 
-      # update nixos using flakes
-      update = "pushd ~/.nixconfig 
-                \n nix flake update
-                \n popd"; 
       # turn on laptop screen on and off in sway
       lo = "swaymsg output eDP-1 dpms off";
       ln = "swaymsg output eDP-1 dpms on";
@@ -165,16 +156,7 @@
       rus = "cd ~/rust/
             \n nix-shell"; 
       # update configuation.nix to git repository
-      gp = "cp -r ~/.nixconfig/  ~/nixos/ 
-            \n pushd ~/nixos
-            \n git add .nixconfig 
-            \n git commit -m 'updated config' 
-            \n git push 
-            \n popd "; 
-
-      # w3m with google search 
-      gg = "w3m google.com";
-      yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right"; # youtube 
+          yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right"; # youtube 
     };
 
 

@@ -12,7 +12,27 @@
     shellAliases = {
       ll = "ls -l"; 
       ls = "ls --color=always";
+      conf = "~/config.sh"; # nixos configuration
+      # rebuild nixos using flake
+      re = "pushd ~/.nixconfig
+           \n doas nixos-rebuild switch --flake '.#laptop'
+           \n popd"; 
+      # update nixos using flakes
+      update = "pushd ~/.nixconfig 
+                \n nix flake update
+                \n popd"; 
+
+      gp = "cp -r ~/.nixconfig/  ~/nixos/ 
+            \n pushd ~/nixos
+            \n git add .nixconfig 
+            \n git commit -m 'updated config' 
+            \n git push 
+            \n popd "; 
+
+      # w3m with google search 
+      gg = "w3m google.com";
     };
+
     completionInit = "autoload -Uz compinit
                       zstyle ':completion:*' menu select
                       zmodload zsh/complist

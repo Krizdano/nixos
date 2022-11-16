@@ -150,30 +150,6 @@
    # enableAutosuggestions = true;
    # initExtra = ''eval "$(starship init zsh)" '';
 
-    programs.zsh.shellAliases = { # all shell aliases
-      conf = "vi ~/.nixconfig/hosts/vm/default.nix"; # nixos configuration
-      # rebuild nixos using flake
-      re = "pushd ~/.nixconfig
-           \n doas nixos-rebuild switch --flake '.#vm'
-           \n popd"; 
-      # update nixos using flakes
-      update = "pushd ~/.nixconfig 
-                \n nix flake update
-                \n popd"; 
-      # turn on laptop screen on and off in sway
-      # nix-shell with rust development tools
-      # update configuation.nix to git repository
-      gp = "cp -r ~/.nixconfig/  ~/nixos/ 
-            \n pushd ~/nixos
-            \n git add .nixconfig 
-            \n git commit -m 'updated config' 
-            \n git push 
-            \n popd "; 
-      # w3m with google search 
-      gg = "w3m google.com";
-      yt = "ytfzf -t --thumb-viewer=kitty -f -s --detach -l --preview-side=right"; # youtube 
-    };
-
  
   # starship shell prompt
   programs.starship = {
