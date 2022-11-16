@@ -85,14 +85,6 @@
 
       imports = 
       [ ../../modules/shell/zsh.nix
-        ../../modules/programs/gh.nix 
-        ../../modules/programs/git.nix
-        ../../modules/programs/kitty.nix 
-        ../../modules/programs/lf.nix
-        ../../modules/programs/mpv.nix
-        ../../modules/programs/nvim.nix
-        ../../modules/programs/starship.nix
-        ../../modules/programs/waybar.nix
         ../../modules/WindowManagers/sway.nix
      ];
       

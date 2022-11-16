@@ -185,10 +185,11 @@
     #useGlobalPkgs = true;
     users.${user} = { config, pkgs, inputs, lib,  ... }: {
 
-     # imports = [ 
-      #  ../../modules/shell/zsh.nix 
-      #  ../../modules/WindowManagers/sway.nix
-      #];
+      imports = [ 
+        ../modules/shell/zsh.nix 
+        ../modules/WindowManagers/sway.nix
+      ]
+     ++ (import ../modules/programs);
   # Everything inside here is managed by Home Manager!
 
  # imports  = [ ../../modules/shell/zsh.nix ];

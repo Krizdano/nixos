@@ -89,18 +89,7 @@
     users.${user} = { config, pkgs, inputs, lib,  ... }: {
 
       imports = [ 
-        ../../modules/shell/zsh.nix 
-        ../../modules/WindowManagers/sway.nix
-        ../../modules/programs/lf.nix
-        ../../modules/programs/starship.nix
-        ../../modules/programs/nvim.nix
-        ../../modules/programs/kitty.nix
-        ../../modules/programs/mpv.nix
-        ../../modules/programs/git.nix
-         ../../modules/programs/gh.nix
-         ../../modules/programs/kdeconnect.nix
-         
-       
+        ../../modules/programs/kdeconnect.nix
       ];
   # Everything inside here is managed by Home Manager!
 
