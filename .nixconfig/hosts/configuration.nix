@@ -217,7 +217,11 @@
 
 
 
-  home.packages = with pkgs; [
+  home = {
+
+
+
+   packages = with pkgs; [
    pulseaudio   
    w3m # terminal browser
    ytfzf # terminal youtube 
@@ -226,20 +230,22 @@
    glib # gsettings
   ];
   
-  # lf terminal filemanager
+   file = {
+    ".config/wallpapers".source = ../modules/themes/wallpapers;
+    ".themes".source = ../modules/themes/.themes;
+    ".config/scripts".source = ../config/scripts;
+    ".config/ytfzf/subscriptions".source = ../config/ytfzf/subscriptions;
+    ".config/waybar/config".source = ../config/waybar/config;
+    ".config/waybar/style.css".source = ../config/waybar/style.css;
+};
 
+
+  };
 
    
 
 
   # wallpaper
-  home.file.".config/wallpapers".source = ../modules/themes/wallpapers;
-  home.file.".themes".source = ../modules/themes/.themes;
-  home.file.".config/scripts".source = ../config/scripts;
-  home.file.".config/ytfzf/subscriptions".source = ../config/ytfzf/subscriptions;
-  home.file.".config/waybar/config".source = ../config/waybar/config;
-  home.file.".config/waybar/style.css".source = ../config/waybar/style.css;
-
 
   # themes
   gtk = {
