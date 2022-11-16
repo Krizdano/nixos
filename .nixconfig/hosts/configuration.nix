@@ -46,11 +46,13 @@
   
    
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${user} = {
+  users = { 
+    defaultUserShell = pkgs.zsh;
+    users.${user} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "audio" "adbusers" ];
-    shell = pkgs.zsh;
     packages = with pkgs; [];
+  };
   };
 
 
@@ -95,7 +97,7 @@
   qt5.style = "gtk2";
 
   environment = { 
-    pathsToLink = [ "share/zsh" ];
+    pathsToLink = [ "/share/zsh" ];
     variables = {
     TERMINAL ="kitty";
     EDITOR = "nvim" ;

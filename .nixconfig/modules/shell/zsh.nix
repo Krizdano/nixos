@@ -26,9 +26,6 @@
       bindkey -M menuselect 'k' vi-up-line-or-history
       bindkey -M menuselect 'l' vi-forward-char
       bindkey -M menuselect 'j' vi-down-line-or-history
-      if test -f /etc/zshrc.local; then
-        . /etc/zshrc.local
-        fi
 
       function zle-keymap-select {
        if [[ ''${KEYMAP} == vicmd ]] ||
@@ -51,9 +48,6 @@
       preexec() { echo -ne '\e[5 q' ;}
       ''; 
 
-      envExtra = '' for p in ''${(z)NIX_PROFILES}; do 
-      fpath=($p/share/zsh/site-functions $p/share/zsh/$ZSH_VERSION/functions $p/share/zsh/vendor-completions $fpath)
-      done  '';
       
                   
   };
