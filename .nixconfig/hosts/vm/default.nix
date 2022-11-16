@@ -123,6 +123,11 @@
     platformTheme = "gtk";
   };
 
+ wayland.WindowManager.sway.config.output = {  # external monitor
+        "*".bg =  "~/.config/wallpapers/three_squares.png fill";        
+        "Virtual-1".mode = "1366x768";
+        "Virtual-1".position = "0,1920";
+       };
 
 
    }; #end of home-manager programs
