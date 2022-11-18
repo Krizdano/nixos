@@ -31,12 +31,23 @@
            home-manager.useUserPackages = true;
          }
        ]; };
-     vm = lib.nixosSystem {
+      vm = lib.nixosSystem {
        inherit system;
        specialArgs = { inherit user location; };
        modules = [
          ./configuration.nix
          ./vm
+         home-manager.nixosModules.home-manager {
+           home-manager.useGlobalPkgs = true;
+           home-manager.useUserPackages = true;
+         }
+       ];
+     };
+      iso = lib.nixosSystem {
+       inherit system;
+       specialArgs = { inherit user location; };
+       modules = [
+         ./iso
          home-manager.nixosModules.home-manager {
            home-manager.useGlobalPkgs = true;
            home-manager.useUserPackages = true;

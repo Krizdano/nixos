@@ -24,7 +24,7 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  #networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -48,9 +48,9 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = { 
     defaultUserShell = pkgs.zsh;
-    users.${user} = {
+    users.nixos = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "audio" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "audio" "adbsers" ];
     packages = with pkgs; [];
   };
   };
@@ -64,7 +64,7 @@
   security.sudo.enable = false; # disable sudo
   # Configure doas
   security.doas.extraRules = [{
-    users = [ "${user}" ];
+    users = [ "nixos" ];
     keepEnv = true;
     persist = true;  
     }];
@@ -172,27 +172,33 @@
 
   
 #  ──────────────────────────────────────────
-#                                                                                      
+#                                                                     #                 
 #    ╦ ╦╔═╗╔╦╗╔═╗   ╔╦╗╔═╗╔╗╔╔═╗╔═╗╔═╗╦═╗
 #    ╠═╣║ ║║║║║╣ ───║║║╠═╣║║║╠═╣║ ╦║╣ ╠╦╝ 
 #    ╩ ╩╚═╝╩ ╩╚═╝   ╩ ╩╩ ╩╝╚╝╩ ╩╚═╝╚═╝╩╚═    
 #        Begin home-manager directives
-#                                                                                      
+#                                                                     #                 
 #  ──────────────────────────────────────────
 
   home-manager = {
     #useUserPackages = true;
-    #useGlobalPkgs = true; users.${user} = { config, pkgs, inputs, lib,  ... }: {
+    #useGlobalPkgs = true;
+    users.nixos = { config, pkgs, inputs, lib,  ... }: {
 
       imports = [ 
-        ../modules/shell/zsh.nix 
-        ../modules/WindowManagers/sway.nix
+        ../../modules/shell/zsh.nix 
+        ../../modules/WindowManagers/sway.nix
       ]
-     ++ (import ../modules/programs);
+     ++ (import ../../modules/programs);
+  # Everything inside here is managed by Home Manager!
 
+ # imports  = [ ../../modules/shell/zsh.nix ];
   # version
-  home.stateVersion = "22.05";
-
+  
+ # home = {
+    # user = "nixos";
+   # stateVersion = "22.05";
+ # };
 
   # sway idle  
   services.swayidle= {
@@ -215,6 +221,9 @@
 
 
   home = {
+    stateVersion = "22.05";
+
+
 
    packages = with pkgs; [
    pulseaudio   
@@ -226,20 +235,23 @@
   ];
   
    file = {
-    ".config/wallpapers".source = ../modules/themes/wallpapers;
-    ".themes".source = ../modules/themes/.themes;
-    ".config/scripts".source = ../config/scripts;
-    ".config/ytfzf/subscriptions".source = ../config/ytfzf/subscriptions;
-    ".config/waybar/config".source = ../config/waybar/config;
-    ".config/waybar/style.css".source = ../config/waybar/style.css;
-    ".mozilla/firefox/mz4w5cdv.default/chrome".source = ../config/chrome; 
-    ".mozilla/firefox/profiles.ini".source = ../config/firefox/profiles.ini; 
+    ".config/wallpapers".source = ../../modules/themes/wallpapers;
+    ".themes".source = ../../modules/themes/.themes;
+    ".config/scripts".source = ../../config/scripts;
+    ".config/ytfzf/subscriptions".source = ../../config/ytfzf/subscriptions;
+    ".config/waybar/config".source = ../../config/waybar/config;
+    ".config/waybar/style.css".source = ../../config/waybar/style.css;
+    ".mozilla/firefox/mz4w5cdv.default/chrome".source = ../../config/chrome; 
+    ".mozilla/firefox/profiles.ini".source = ../../config/firefox/profiles.ini; 
 };
 
 
   };
 
+   
 
+
+  # wallpaper
 
   # themes
   gtk = {
@@ -257,6 +269,10 @@
 
 
 
+    
+       
+   
+  
 
    }; #end of home-manager programs
 

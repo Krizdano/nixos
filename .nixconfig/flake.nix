@@ -1,5 +1,5 @@
 # My personal Nixos flake 
-# this flake manages my Nixos Configuration
+# this is a flake manages my Nixos Configuration
 
 #  flake.nix *             
 #   ├─ ./hosts
