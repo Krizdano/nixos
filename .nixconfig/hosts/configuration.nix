@@ -21,9 +21,11 @@
   
   #flakes
   nix = {
-  package = pkgs.nixFlakes;
-  settings.experimental-features = ["nix-command" "flakes"];
-  }; 
+   package = pkgs.nixFlakes;
+   settings = {
+    experimental-features = ["nix-command" "flakes"];
+   };
+ }; 
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -39,6 +41,10 @@
     enable = true;  
     layout = "us";
     xkbVariant = "";
+    displayManager = {
+     lightdm.enable = false; # disables lightdm which is already enabled by default
+    };
+    excludePackages = [ pkgs.xterm ]; # remove xterm terminal 
   };
   
   # dconf (for gtk themes to work properly)
@@ -51,10 +57,12 @@
   users = { 
     defaultUserShell = pkgs.zsh;
     users.${user} = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "audio" "adbusers" ];
-    packages = with pkgs; [];
-  };
+     isNormalUser = true;
+     extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "audio" "adbusers" ];
+     packages = with pkgs; [
+      # user packages 
+     ];
+   };
   };
 
 
@@ -62,7 +70,9 @@
   # hardware.pulseaudio.enable = false;  
 
   # bash
-  programs.bash.enableCompletion = true;
+  programs.bash = {
+   enableCompletion = true;
+  };
 
 
   # enable doas
@@ -85,15 +95,11 @@
   ]; # for swaybar config
 
 
-  # remove xterm terminal 
-  services.xserver.excludePackages = [pkgs.xterm];
 
 
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   # services.gnome.core-utilities.enable = false; #gnome without apps
-  services.xserver.displayManager.lightdm.enable = false; #disables ldm  which is enabled by default
-  
 
   # exclude package gnome 
   # environment.gnome.excludePackages = [ pkgs.gnome-tour
@@ -102,10 +108,12 @@
      
    
   # qt5
-  qt5.platformTheme = "qt5ct";
-  qt5.style = "gtk2";
+  qt5 = {
+   platformTheme = "qt5ct";
+   style = "gtk2";
+ }; 
 
-  environment = { 
+ environment = { 
     pathsToLink = [ "/share/zsh" ];
     shells = [ pkgs.zsh ];
     variables = {
