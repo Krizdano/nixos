@@ -35,14 +35,19 @@
   services.blueman.enable = true;
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
+  boot = {
+    loader = {
+     systemd-boot.enable = true;
+     # UEFI settings
+     efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+     };
+   };
+   # get latest kernel
+   kernelPackages = pkgs.linuxPackages_latest;
+ }; 
   
-  # get latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
  
   #virtualisation
   virtualisation.libvirtd.enable = true;

@@ -20,7 +20,7 @@
   outputs = { self, home-manager, nixpkgs, ... }: 
    let
      user = "krizdavezz";
-     location = "$HOME/NixConfig";
+     location = "$HOME/.nixconfig";
    in 
   {
   nixosConfigurations = (
