@@ -20,8 +20,10 @@
    
   
   #flakes
-  nix.package = pkgs.nixFlakes;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix = {
+  package = pkgs.nixFlakes;
+  settings.experimental-features = ["nix-command" "flakes"];
+  }; 
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -63,16 +65,19 @@
   programs.bash.enableCompletion = true;
 
 
-  # doas
-  security.doas.enable = true;
-  security.sudo.enable = false; # disable sudo
-  # Configure doas
-  security.doas.extraRules = [{
-    users = [ "${user}" ];
-    keepEnv = true;
-    persist = true;  
+  # enable doas
+  security = {
+    doas = {
+     enable = true;
+     # Configure doas
+     extraRules = [{
+      users = [ "${user}" ];
+      keepEnv = true;
+      persist = true;  
     }];
-
+   };
+  sudo.enable = false;  # disable sudo
+ };  
 
   # fonts
   fonts.fonts = with pkgs; [
@@ -196,8 +201,6 @@
       ]
      ++ (import ../modules/programs);
 
-  # version
-  home.stateVersion = "22.05";
 
 
   # sway idle  
@@ -241,8 +244,7 @@
     ".mozilla/firefox/mz4w5cdv.default/chrome".source = ../config/chrome; 
     ".mozilla/firefox/profiles.ini".source = ../config/firefox/profiles.ini; 
 };
-
-
+  stateVersion = "22.05";
   };
 
 
