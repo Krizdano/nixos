@@ -59,6 +59,10 @@
   # sound 
   # hardware.pulseaudio.enable = false;  
 
+  # bash
+  programs.bash.enableCompletion = true;
+
+
   # doas
   security.doas.enable = true;
   security.sudo.enable = false; # disable sudo
@@ -105,8 +109,8 @@
     VISUAL = "nvim" ;
     QT_QPA_PLATFORMTHEME = "qt5ct";
   };
-
-  };
+};
+  
 
   # Gtk theme 
   #environment.sessionVariables = {GTK_THEME="WhiteSur-Dark-solid";};
@@ -183,6 +187,8 @@
   home-manager = {
     #useUserPackages = true;
     #useGlobalPkgs = true; users.${user} = { config, pkgs, inputs, lib,  ... }: {
+      users.${user} = { config, pkgs, inputs, ... }: {
+
 
       imports = [ 
         ../modules/shell/zsh.nix 
@@ -257,9 +263,10 @@
 
 
 
-
    }; #end of home-manager programs
 
+
+     
   }; # end of home-manager
 
 } # end of configuration
