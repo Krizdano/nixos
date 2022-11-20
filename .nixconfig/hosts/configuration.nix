@@ -37,16 +37,21 @@
   i18n.defaultLocale = "en_IN";
   
   # Configure keymap in X11
-  services.xserver = {
-    enable = true;  
-    layout = "us";
-    xkbVariant = "";
-    displayManager = {
-     lightdm.enable = false; # disables lightdm which is already enabled by default
-    };
-    excludePackages = [ pkgs.xterm ]; # remove xterm terminal 
-  };
+ # services.xserver = {
+  #  enable = true;  
+  #  layout = "us";
+  #  xkbVariant = "";
+  #  displayManager = {
+  #   lightdm.enable = false; # disables lightdm which is already enabled by default
+ #   };
+  #  excludePackages = [ pkgs.xterm ]; # remove xterm terminal 
+ # };
   
+  console = {
+    keyMap = "us";
+    font = "Lat2-Terminus16";
+  };
+
   # dconf (for gtk themes to work properly)
   programs.dconf = {
     enable = true;
@@ -91,6 +96,8 @@
 
   # fonts
   fonts.fonts = with pkgs; [
+    carlito
+    vegur
    (nerdfonts.override { fonts = [ "Ubuntu" ]; })
   ]; # for swaybar config
 
@@ -138,6 +145,8 @@
    jack.enable = true;
   };
 
+  # authorisation
+  security.polkit.enable = true;
 
   # recent fix for break 
   systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];

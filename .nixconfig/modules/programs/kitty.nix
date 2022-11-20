@@ -2,6 +2,10 @@
 
   programs.kitty = {
     enable = true;
+    font = {
+     name = "DejaVu Sans";
+     package = pkgs.dejavu_fonts;
+    }; 
     extraConfig = "
                     # The basic colors
                     foreground              #CDD6F4
