@@ -38,6 +38,7 @@
   boot = {
     loader = {
      systemd-boot.enable = true;
+     timeout = 0;
      # UEFI settings
      efi = {
       canTouchEfiVariables = true;
