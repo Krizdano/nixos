@@ -18,12 +18,12 @@
                 \n nix flake update
                 \n popd"; 
 
-      gp = "cp -r ~/.nixconfig/  ~/nixos/ 
-            \n pushd ~/nixos
-            \n git add .nixconfig 
-            \n git commit -m 'updated config' 
-            \n git push 
-            \n popd "; 
+      #gp = "cp -r ~/.nixconfig/  ~/nixos/ 
+       #     \n pushd ~/nixos
+       #     \n git add .nixconfig 
+       #     \n git commit -m 'updated config' 
+       #     \n git push 
+       #     \n popd "; 
 
       # w3m with google search 
       gg = "w3m google.com";
