@@ -138,7 +138,6 @@
     extraConfig = 
     "exec autotiling 
      exec inactive-windows-transparency.py  
-     output * bg /home/krizdavezz/Pictures/wallpapers/three_squares.png fill 
      include /home/krizdavezz/.config/sway/extraconf";
       
   }; # end of sway
