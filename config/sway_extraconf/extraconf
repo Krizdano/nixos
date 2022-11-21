@@ -1,0 +1,4 @@
+ for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 2
+ for_window [app_id="mpv"] floating enable, sticky enable, resize set width 100ppt, move position 0 0,resize set width 99ppt 
+# bindsym mod4+p exec kitty --class=ytfzf -e ytfzf -t --thumb-viewer=kitty -l -s -f
+ for_window [app_id="^ytfzf$"] floating enable, sticky enable, resize set 80 ppt 80 ppt, border pixel 2
