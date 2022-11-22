@@ -21,7 +21,7 @@
     { 
      laptop = lib.nixosSystem {
        inherit system;
-       specialArgs = { inherit user location;};
+       specialArgs = { inherit user location ;};
        modules = [
          ./configuration.nix
          ./laptop
@@ -34,7 +34,7 @@
      };
       vm = lib.nixosSystem {
        inherit system;
-       specialArgs = { inherit user location; };
+       specialArgs = { inherit user location ; };
        modules = [
          ./configuration.nix
          ./vm
@@ -47,7 +47,7 @@
      };
       iso = lib.nixosSystem {
        inherit system;
-       specialArgs = { inherit user location; };
+       specialArgs = { inherit user location ; };
        modules = [
          ./iso
 
