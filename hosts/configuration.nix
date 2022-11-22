@@ -239,6 +239,10 @@
   };
 
 
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   home = {
 
@@ -247,7 +251,6 @@
    w3m # terminal browser
    ytfzf # terminal youtube 
    bemenu # search bar
-   fzf
    glib # gsettings
   ];
   
@@ -260,6 +263,8 @@
     ".config/waybar/style.css".source = ../config/waybar/style.css;
     ".mozilla/firefox/mz4w5cdv.default/chrome".source = ../config/chrome; 
     ".mozilla/firefox/profiles.ini".source = ../config/firefox/profiles.ini; 
+    ".config/lf/lf_kitty_clean".source = ../config/scripts/lf_preview/lf_kitty_clean;
+    ".config/lf/lf_kitty_preview".source = ../config/scripts/lf_preview/lf_kitty_preview;
 };
   stateVersion = "22.05";
   };

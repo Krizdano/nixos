@@ -28,9 +28,9 @@
 
     #navigator-toolbox:hover:not([inFullscreen]) :-moz-any(#nav-bar), 
     #navigator-toolbox:focus-within :-moz-any(#nav-bar) {
-     min-height: 32px !important; max-height: 32px !important; margin-top: 0px !important; margin-bottom: -61px !important; z-index: 5 !important; }
+     min-height: 38px !important; max-height: 38x !important; margin-top: 0px !important; margin-bottom: -61px !important; z-index: 5 !important; }
 
-        #urlbar { --urlbar-toolbar-height: 32px !important; }
+        #urlbar { --urlbar-toolbar-height: 38px !important; }
 
 
 
