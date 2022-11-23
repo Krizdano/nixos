@@ -8,6 +8,7 @@
     enableCompletion = true;
     enableSyntaxHighlighting = true;
     enableAutosuggestions = true;
+    dotDir = ".config/zsh";
     autocd = true;
     shellAliases = {
       ll = "ls -l"; 
@@ -25,6 +26,14 @@
             \n git push 
             \n popd "; 
 
+
+      gc = "cp -r ~/.nixconfig/*  ~/nixos/ 
+            \n pushd ~/nixos
+            \n git add * 
+            \n git commit  
+            \n git push 
+            \n popd "; 
+
       # w3m with google search 
       gg = "w3m google.com";
     };
@@ -37,7 +46,7 @@
 
 
 
-    #defaultKeymap = "viins";
+    defaultKeymap = "viins";
     initExtra = 
     ''eval "$(starship init zsh)"  
       setopt extendedglob nomatch notify

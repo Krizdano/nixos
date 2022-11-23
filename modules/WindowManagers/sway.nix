@@ -1,4 +1,5 @@
-{ pkgs, config, lib, ...}:
+{ pkgs, config, lib, nixosConfig, ...}:
+
 
 {
 
@@ -35,6 +36,43 @@
       modifier = "Mod4";
       gaps.inner = 7;
       window.border = 2;
+
+      startup = [
+      # Lock on lid close after some time 
+       {command = ''
+          ${pkgs.swayidle}/bin/swayidle -w \
+              before-sleep '${pkgs.swaylock}/bin/swaylock -fc 000000'
+        ''; always = true;}                                    
+        # autolock after some time of inactivity
+        {command = ''
+          ${pkgs.swayidle}/bin/swayidle \
+            timeout 120 '${pkgs.swaylock}/bin/swaylock -fc 000000' \
+        ''; always = true;}             
+        # turn the screen of after some time of inactivity
+        {command = ''
+          ${pkgs.swayidle}/bin/swayidle \
+            timeout 240 'swaymsg "output * dpms off"' \
+        ''; always = true;}             
+        # turn the screen on after resuming
+        {command = ''
+          ${pkgs.swayidle}/bin/swayidle \
+            resume 'swaymsg "output * dpms on"' \
+        ''; always = true;}             
+      ];
+
+      workspaceOutputAssign = [
+        {output = "HDMI-A-1"; workspace = "2";}
+        {output = "HDMI-A-1"; workspace = "4";}
+        {output = "HDMI-A-1"; workspace = "6";}
+        {output = "HDMI-A-1"; workspace = "8";}
+        {output = "eDP-1"; workspace = "1";}
+        {output = "eDP-1"; workspace = "3";}
+        {output = "eDP-1"; workspace = "5";}
+        {output = "eDP-1"; workspace = "7";}
+        {output = "eDP-1"; workspace = "9";}
+      ];
+     defaultWorkspace = "workspace number 2";
+ 
       colors = {
         focused = {
           background = "#ffffff";

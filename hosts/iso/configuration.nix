@@ -33,12 +33,12 @@
   i18n.defaultLocale = "en_IN";
   
   # Configure keymap in X11
-  services.xserver = {
-    enable = true;  
-    layout = "us";
-    xkbVariant = "";
-  };
   
+  console = {
+    keyMap = "us";
+    font = "Lat2-Terminus16";
+  };
+
   # dconf (for gtk themes to work properly)
   programs.dconf = {
     enable = true;
@@ -50,7 +50,7 @@
     defaultUserShell = pkgs.zsh;
     users.nixos = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "audio" "adbsers" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "adbsers" ];
     packages = with pkgs; [];
   };
   };
@@ -77,13 +77,10 @@
 
 
   # remove xterm terminal 
-  services.xserver.excludePackages = [pkgs.xterm];
-
 
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   # services.gnome.core-utilities.enable = false; #gnome without apps
-  services.xserver.displayManager.lightdm.enable = false; #disables ldm  which is enabled by default
   
 
   # exclude package gnome 
@@ -190,15 +187,7 @@
         ../../modules/WindowManagers/sway.nix
       ]
      ++ (import ../../modules/programs);
-  # Everything inside here is managed by Home Manager!
 
- # imports  = [ ../../modules/shell/zsh.nix ];
-  # version
-  
- # home = {
-    # user = "nixos";
-   # stateVersion = "22.05";
- # };
 
   # sway idle  
   services.swayidle= {

@@ -6,6 +6,9 @@
      name = "DejaVu Sans";
      package = pkgs.dejavu_fonts;
     }; 
+    settings = {
+      enable_audio_bell = false;
+    };
     extraConfig = "
                     # The basic colors
                     foreground              #CDD6F4

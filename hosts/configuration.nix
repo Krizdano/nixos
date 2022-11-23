@@ -36,17 +36,7 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
   
-  # Configure keymap in X11
- # services.xserver = {
-  #  enable = true;  
-  #  layout = "us";
-  #  xkbVariant = "";
-  #  displayManager = {
-  #   lightdm.enable = false; # disables lightdm which is already enabled by default
- #   };
-  #  excludePackages = [ pkgs.xterm ]; # remove xterm terminal 
- # };
-  
+
   console = {
     keyMap = "us";
     font = "Lat2-Terminus16";
@@ -57,7 +47,7 @@
     enable = true;
   };
   
-   
+ security.pam.services.swaylock = {};
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = { 
     defaultUserShell = pkgs.zsh;
@@ -221,17 +211,17 @@
 
 
   # sway idle  
-  services.swayidle= {
-    enable = true;
-    timeouts = [
-     { timeout = 200; command = "swaylock -f -c 000000"; }  
-     { timeout = 400; command = "swaymsg 'output * poweroff' resume swaymsg 'output * power on'";
-     }  
-    ];
-    events = [
-     { event = "before-sleep"; command = "swaylock -f -c 000000";} 
-    ];
-  }; 
+  #services.swayidle= {
+  #  enable = true;
+  #  timeouts = [
+  #   { timeout = 200; command = "${pkgs.swaylock}/bin/swaylock -fc 000000"; }  
+  #   { timeout = 400; command = "swaymsg 'output * poweroff' resume swaymsg 'output * power on'";
+  #   }  
+  #  ];
+  #  events = [
+  #   { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -fc 000000";} 
+  #  ];
+  #}; 
 
   programs.home-manager = {
    enable = true;
