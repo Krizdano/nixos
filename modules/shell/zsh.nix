@@ -19,15 +19,8 @@
                 \n nix flake update
                 \n popd"; 
 
+
       gp = "cp -r ~/.nixconfig/*  ~/nixos/ 
-            \n pushd ~/nixos
-            \n git add * 
-            \n git commit -m 'updated config' 
-            \n git push 
-            \n popd "; 
-
-
-      gc = "cp -r ~/.nixconfig/*  ~/nixos/ 
             \n pushd ~/nixos
             \n git add * 
             \n git commit  
