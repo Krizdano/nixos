@@ -48,16 +48,6 @@
           ${pkgs.swayidle}/bin/swayidle \
             timeout 120 '${pkgs.swaylock}/bin/swaylock -fc 000000' \
         ''; always = true;}             
-        # turn the screen of after some time of inactivity
-        {command = ''
-          ${pkgs.swayidle}/bin/swayidle \
-            timeout 240 'swaymsg "output * dpms off"' \
-        ''; always = true;}             
-        # turn the screen on after resuming
-        {command = ''
-          ${pkgs.swayidle}/bin/swayidle \
-            resume 'swaymsg "output * dpms on"' \
-        ''; always = true;}             
       ];
 
       workspaceOutputAssign = [

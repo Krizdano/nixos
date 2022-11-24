@@ -242,6 +242,7 @@
    ytfzf # terminal youtube 
    bemenu # search bar
    glib # gsettings
+   mimeo
   ];
   
    file = {
@@ -260,13 +261,21 @@
   };
 
 
+  #default home directories
+  xdg.userDirs = {
+    enable = true;
+    documents = "${config.home.homeDirectory}/Documents";
+    download = "${config.home.homeDirectory}/Downloads";
+    pictures = "${config.home.homeDirectory}/Pictures";
+    videos = "${config.home.homeDirectory}/Videos";
+  };
 
   # themes
   gtk = {
     enable = true;
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     theme =  { 
-    name =  "Catppuccin-Mocha";
-        
+     name =  "Catppuccin-Mocha";
     };
   };
 
