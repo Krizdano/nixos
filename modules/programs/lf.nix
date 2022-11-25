@@ -5,8 +5,9 @@
    keybindings = { # certain keybindings
      "." = "set hidden!";
      "<enter>" = "shell";
-     "o" = "open";
+     "o" = "$glow $f -p less";
      "DD" = "delete";
+
    };
    extraConfig = ''
      set previewer ~/.config/lf/lf_kitty_preview

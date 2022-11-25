@@ -62,6 +62,7 @@
 
 
     environment.systemPackages = with pkgs; [
+      glow
       xdg-utils
     ];
   # sound 
@@ -152,7 +153,12 @@
   # printing and others.
   services.dbus.enable = true;
   xdg= {
-    mime.enable = true;
+    mime ={
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = "firefox.desktop"; 
+      };
+   };   
     portal = {
      enable = true;
      wlr.enable = true;
