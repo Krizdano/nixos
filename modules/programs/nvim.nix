@@ -38,33 +38,38 @@
        vim-nix #nix language syntaxhighlighting 
        coc-rust-analyzer # rust language support  
 
-              {
-         plugin = nvim-autopairs; # auto pair parantheses and quotes
-         type = "lua";
-         config = ''require("nvim-autopairs").setup {}'';
-       }
+     {
+      plugin = nvim-autopairs; # auto pair parantheses and quotes
+      type = "lua";
+      config = ''require("nvim-autopairs").setup {}'';
+     }
        
-            {
-       plugin = catppuccin-nvim; # theme
-       type = "lua";
-       config = ''require("catppuccin").setup {
-         flavour = "mocha",
-         background = {
-         light = "latte",
-         dark = "mocha",
-         },
-	compile_path = vim.fn.stdpath "cache" .. "/catppuccin",
-         color_overrides = {
-         mocha = {
-         base = "#161718",
-          },
-         },
-         integrations = {
-         nvimtree = true,
-          },
-    }
+     {
+      plugin = markdown-preview-nvim;
+      type = "lua";
+     }
 
-         ''; }
+     {
+      plugin = catppuccin-nvim; # theme
+      type = "lua";
+      config = ''require("catppuccin").setup {
+       flavour = "mocha",
+       background = {
+       light = "latte",
+       dark = "mocha",
+       },
+       compile_path = vim.fn.stdpath "cache" .. "/catppuccin",
+       color_overrides = {
+       mocha = {
+       base = "#161718",
+         },
+        },
+       integrations = {
+       nvimtree = true,
+         },
+        }
+         '';
+     }
 
 
 

@@ -61,6 +61,9 @@
   };
 
 
+    environment.systemPackages = with pkgs; [
+      xdg-utils
+    ];
   # sound 
   # hardware.pulseaudio.enable = false;  
 
@@ -148,9 +151,12 @@
   # The portal interfaces include APIs for file access, opening URIs,
   # printing and others.
   services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
+  xdg= {
+    mime.enable = true;
+    portal = {
+     enable = true;
+     wlr.enable = true;
+   };   
   };   
    
 

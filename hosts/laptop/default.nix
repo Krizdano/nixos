@@ -23,7 +23,7 @@
    
   
   # adb
-  # programs.adb.enable = true;
+   programs.adb.enable = true;
   
   #opengl
   hardware.opengl= {
@@ -73,7 +73,6 @@
      htop
      gdu # disk management
      gimp
-     mimeo
      tdesktop # telegram
      firefox-wayland 
      #sway
