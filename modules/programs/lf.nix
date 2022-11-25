@@ -5,7 +5,7 @@
    keybindings = { # certain keybindings
      "." = "set hidden!";
      "<enter>" = "shell";
-     "o" = "$glow $f -p less";
+     "o" = "$glow -p $f";
      "DD" = "delete";
 
    };
