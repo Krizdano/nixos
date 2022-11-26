@@ -40,7 +40,7 @@
       startup = [
       # Lock on lid close after some time 
        {command = ''
-          ${pkgs.swayidle}/bin/swayidle -w \
+          ${pkgs.swayidle}/bin/swayidle \
               before-sleep '${pkgs.swaylock}/bin/swaylock -fc 000000'
         ''; always = true;}                                    
         # autolock after some time of inactivity
