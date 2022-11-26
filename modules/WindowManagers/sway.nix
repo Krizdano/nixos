@@ -181,7 +181,6 @@
     swayidle
     sway-launcher-desktop
     wl-clipboard
-    mako
     wf-recorder
     sway-contrib.inactive-windows-transparency
     autotiling

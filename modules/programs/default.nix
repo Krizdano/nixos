@@ -7,4 +7,5 @@
   ./nvim.nix
   ./starship.nix
   ./waybar.nix
+  ./dunst.nix
 ]
