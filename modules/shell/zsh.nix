@@ -39,7 +39,21 @@
                       ";
 
 
-    #envExtra = ''export CARGO_HOME=${config.xdg.dataHome}/cargo'';
+                     # envExtra = ''export LF_ICONS="
+                      #ln=:
+                      #or=:\      
+                      #tw=t:\     
+                     # ow=:\      
+                     # st=t:\      
+                     # di=:\    
+                     # pi=p:\      
+                     # so=s:\      
+                     # bd=b:\      
+                     # cd=c:\      
+                     # su=u:\      
+                     # sg=g:\     
+                     # ex=:\     
+                     # fi="'';
 
     defaultKeymap = "viins";
     initExtra = 
