@@ -7,5 +7,6 @@
   ./nvim.nix
   ./starship.nix
   ./waybar.nix
-  ./dunst.nix
+  #./dunst.nix
+  ./mako.nix
 ]
