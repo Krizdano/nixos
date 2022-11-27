@@ -49,8 +49,10 @@
       style = "bright-green bold";
     };
     character = {
-       success_symbol = ''[ 壟](bright-blue bold)'';
+      success_symbol = ''[ 壟](bright-blue bold)'';
       error_symbol = "[ 壟](bright-red bold)";
+      vimcmd_symbol = "[ 壟](bright-blue bold)";
+
       };
     };
   };
