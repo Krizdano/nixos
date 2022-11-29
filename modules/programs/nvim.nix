@@ -23,6 +23,9 @@
                      map <Leader>s <C-w>j
                      map <Leader>d <C-w>l
                      tmap <Leader><Esc> exit<CR>
+                     let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+                     highlight QuickScopePrimary  gui=underline  cterm=underline
+                     highlight QuickScopeSecondary  gui=underline  cterm=underline
                     '';
    # coc settings
    coc = {
@@ -37,6 +40,7 @@
     plugins = with pkgs.vimPlugins; [
        vim-nix #nix language syntaxhighlighting 
        coc-rust-analyzer # rust language support  
+       quick-scope
 
      {
       plugin = nvim-autopairs; # auto pair parantheses and quotes

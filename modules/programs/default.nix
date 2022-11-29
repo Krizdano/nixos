@@ -9,4 +9,5 @@
   ./waybar.nix
   #./dunst.nix
   ./mako.nix
+  ./pistol.nix
 ]

@@ -13,6 +13,7 @@
      "<enter>" = "shell";
      "o" = "$glow -p $f";
      "DD" = "delete";
+     "p" = "$pixcat fit-screen --enlarge $f";
    };
    #commands = {
    #  follow_link = ''
@@ -30,7 +31,6 @@
 
    packages = with pkgs; [
     file
-    pistol
   ];
 
     file.".config/lf/lf_kitty_clean" = {

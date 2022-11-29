@@ -14,7 +14,7 @@
     shellAliases = {
       ll = "ls -l"; 
       ls = "ls --color=always";
-      conf = "~/.config/scripts/config.sh"; # nixos configuration
+      conf =''find .nixconfig -name '*.nix' | fzf --preview="pistol {}" | xargs -I {} vi {}''; # nixos configuration
             # update nixos using flakes
       update = "pushd ~/.nixconfig 
                 \n nix flake update
@@ -39,25 +39,12 @@
                       ";
 
 
-                     # envExtra = ''export LF_ICONS="
-                      #ln=:
-                      #or=:\      
-                      #tw=t:\     
-                     # ow=:\      
-                     # st=t:\      
-                     # di=:\    
-                     # pi=p:\      
-                     # so=s:\      
-                     # bd=b:\      
-                     # cd=c:\      
-                     # su=u:\      
-                     # sg=g:\     
-                     # ex=:\     
-                     # fi="'';
+                     # envExtra = 
 
     defaultKeymap = "viins";
     initExtra = 
     ''eval "$(starship init zsh)"  
+      export KEYTIMEOUT=1
       setopt extendedglob nomatch notify
       unsetopt BEEP
       bindkey -M menuselect 'h' vi-backward-char

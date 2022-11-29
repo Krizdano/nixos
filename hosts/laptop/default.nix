@@ -30,6 +30,8 @@
     enable = true;
   };
 
+  networking.hostName = "mylaptop";
+
   # bluetooth 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -45,7 +47,7 @@
       efiSysMountPoint = "/boot/efi";
      };
    };
-   # get latest kernel
+   # get zen kernel
    kernelPackages = pkgs.linuxPackages_latest;
  }; 
   

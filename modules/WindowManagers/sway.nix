@@ -107,9 +107,13 @@
        "mod4+h" = "focus left";
 
        # move focused window
+       "mod4+Shift+l" = "move left";
        "mod4+Shift+Left" = "move left";
+       "mod4+Shift+j" = "move down";
        "mod4+Shift+Down" = "move down";
+       "mod4+Shift+h" = "move right";
        "mod4+Shift+Right" = "move right";
+       "mod4+Shift+k" = "move up";
        "mod4+Shift+Up" = "move up";
 
        # workspaces

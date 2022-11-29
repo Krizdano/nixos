@@ -254,7 +254,7 @@
    ytfzf # terminal youtube 
    bemenu # search bar
    glib # gsettings
-   mimeo
+   pixcat
   ];
   
    file = {

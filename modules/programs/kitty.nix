@@ -8,6 +8,7 @@
     }; 
     settings = {
       enable_audio_bell = false;
+      scrollback_pager = '' nvim --noplugin -c "set signcolumn=no showtabline=0" -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - "'';
     };
     extraConfig = "
                     # The basic colors
