@@ -14,7 +14,9 @@
     shellAliases = {
       ll = "ls -l"; 
       ls = "ls --color=always";
-      conf =''find .nixconfig -name '*.nix' | fzf --preview="pistol {}" | xargs -I {} vi {}''; # nixos configuration
+      nt = ''pushd ~; find .nixconfig/notes -name '*.md' | fzf --preview="glow {}" | xargs vi; popd'';
+      notes = ''pushd ~; find Documents/notes/ -name '*.md' | fzf  | xargs glow -p; popd'';
+      conf =''pushd ~; find .nixconfig -name '*.nix' | fzf --preview="pistol {}" | xargs vi; popd''; # nixos configuration
             # update nixos using flakes
       update = "pushd ~/.nixconfig 
                 \n nix flake update

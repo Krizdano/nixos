@@ -71,6 +71,8 @@
   # bash
   programs.bash = {
    enableCompletion = true;
+   enableLsColors = true;
+   promptInit = ''eval "$(starship init bash)"'';
   };
 
 
@@ -92,6 +94,7 @@
   fonts.fonts = with pkgs; [
     carlito
     vegur
+    lohit-fonts.malayalam
    (nerdfonts.override { fonts = [ "Ubuntu" ]; })
   ]; # for swaybar config
 
