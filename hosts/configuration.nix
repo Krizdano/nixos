@@ -125,6 +125,8 @@
     EDITOR = "nvim" ;
     VISUAL = "nvim" ;
     QT_QPA_PLATFORMTHEME = "qt5ct";
+    ANDROID_HOME= ''"$XDG_DATA_HOME"/android'';
+    CARGO_HOME= ''"$XDG_DATA_HOME"/cargo'';
   };
 };
   
@@ -168,6 +170,7 @@
    };   
   };   
    
+
 
   
   # Some programs need SUID wrappers, can be configured further or are

@@ -23,9 +23,12 @@
                      map <Leader>s <C-w>j
                      map <Leader>d <C-w>l
                      tmap <Leader><Esc> exit<CR>
+
                      let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-                     highlight QuickScopePrimary  gui=underline  cterm=underline
-                     highlight QuickScopeSecondary  gui=underline  cterm=underline
+                     highlight QuickScopePrimary gui=underline cterm=underline
+                     highlight QuickScopeSecondary gui=underline cterm=underline
+
+                     let g:vimwiki_list = [{'path': '~/.nixconfig/notes/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
                     '';
    # coc settings
    coc = {
@@ -40,7 +43,8 @@
     plugins = with pkgs.vimPlugins; [
        vim-nix #nix language syntaxhighlighting 
        coc-rust-analyzer # rust language support  
-       quick-scope
+       quick-scope # hightlight character with f or t to move between them
+       vimwiki
 
      {
       plugin = nvim-autopairs; # auto pair parantheses and quotes
