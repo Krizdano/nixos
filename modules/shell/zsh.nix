@@ -15,7 +15,7 @@
       ll = "ls -l"; 
       ls = "ls --color=always";
       nt = ''pushd ~; find .nixconfig/notes -name '*.md' | fzf --preview="glow {}" | xargs vi; popd'';
-      notes = ''pushd ~; find Documents/notes/ -name '*.md' | fzf  | xargs glow -p; popd'';
+      notes = ''pushd ~; find Documents/notes/vimwiki/ -name '*.md' | fzf --preview="glow {}" | xargs glow -p; popd'';
       conf =''pushd ~; find .nixconfig -name '*.nix' | fzf --preview="pistol {}" | xargs vi; popd''; # nixos configuration
             # update nixos using flakes
       update = "pushd ~/.nixconfig 
