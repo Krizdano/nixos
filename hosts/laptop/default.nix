@@ -47,7 +47,7 @@
       efiSysMountPoint = "/boot/efi";
      };
    };
-   # get zen kernel
+   # get latest kernel
    kernelPackages = pkgs.linuxPackages_latest;
  }; 
   
