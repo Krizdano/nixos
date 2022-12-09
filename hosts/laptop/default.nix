@@ -44,7 +44,7 @@
      # UEFI settings
      efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+      efiSysMountPoint = "/boot";
      };
    };
    # get latest kernel
