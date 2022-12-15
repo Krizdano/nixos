@@ -6,7 +6,21 @@
 #
 #         flake.nix
 #         ├─ ./hosts
-#               └─ configuration.nix *
+#         │    ├── configuration.nix *
+#         │    ├── default.nix
+#         │    ├── laptop
+#         │    │    ├── default.nix
+#         │    │    └── hardware-configuration.nix
+#         │    └── vm
+#         │         ├── default.nix
+#         │         └── hardware-configuration.nix
+#         ├── modules
+#         ├── programs
+#         │    └─ default.nix
+#         ├── shell
+#         │    └── zsh.nix
+#         └── WindowManagers
+#              └── sway.nix
 #  ──────────────────────────────────────────
 
 { config, pkgs, lib, user, ... }:
@@ -19,13 +33,13 @@
     ];
    
   
-  #flakes
+  # Enable flakes
   nix = {
    package = pkgs.nixFlakes;
    settings = {
     experimental-features = ["nix-command" "flakes"];
    };
- }; 
+  }; 
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -36,18 +50,23 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
   
-
+  #tty
   console = {
     keyMap = "us";
     font = "Lat2-Terminus16";
   };
+
+  # enable zram
+  zramSwap.enable = true;
+  zramSwap.memoryPercent = 50;
 
   # dconf (for gtk themes to work properly)
   programs.dconf = {
     enable = true;
   };
   
- security.pam.services.swaylock = {};
+  security.pam.services.swaylock = {};
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = { 
     defaultUserShell = pkgs.zsh;
@@ -61,10 +80,11 @@
   };
 
 
-    environment.systemPackages = with pkgs; [
-      glow
-      xdg-utils
-    ];
+  environment.systemPackages = with pkgs; [
+    glow
+    xdg-utils
+    (pkgs.callPackage ../scripts/lobster-movie.nix {})
+  ];
   # sound 
   # hardware.pulseaudio.enable = false;  
 
@@ -88,7 +108,7 @@
     }];
    };
   sudo.enable = false;  # disable sudo
- };  
+  };  
 
   # fonts
   fonts.fonts = with pkgs; [
@@ -97,8 +117,6 @@
     lohit-fonts.malayalam
    (nerdfonts.override { fonts = [ "Ubuntu" ]; })
   ]; # for swaybar config
-
-
 
 
   # services.xserver.displayManager.gdm.enable = true;
@@ -115,9 +133,9 @@
   qt5 = {
    platformTheme = "qt5ct";
    style = "gtk2";
- }; 
+  }; 
 
- environment = { 
+  environment = { 
     pathsToLink = [ "/share/zsh" ];
     shells = [ pkgs.zsh ];
     variables = {
@@ -127,8 +145,8 @@
     QT_QPA_PLATFORMTHEME = "qt5ct";
     ANDROID_HOME= ''"$XDG_DATA_HOME"/android'';
     CARGO_HOME= ''"$XDG_DATA_HOME"/cargo'';
+    };
   };
-};
   
 
   # Gtk theme 
@@ -138,8 +156,10 @@
   security.rtkit.enable = true;
   services.pipewire = {
    enable = true;
-   alsa.enable = true;
-   alsa.support32Bit = true;
+   alsa = {
+     enable = true;
+   support32Bit = true;
+   };
    pulse.enable = true;
    jack.enable = true;
   };
@@ -148,7 +168,7 @@
   security.polkit.enable = true;
 
   # recent fix for break 
-  systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
+  #systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
    
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -170,8 +190,6 @@
    };   
   };   
    
-
-
   
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -184,7 +202,10 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    ports = [22];
+  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPortRanges = [ # kdconnect
@@ -243,7 +264,6 @@
 
   programs.home-manager = {
    enable = true;
-
   };
 
 
@@ -253,15 +273,14 @@
   };
 
   home = {
-
    packages = with pkgs; [
-   pulseaudio   
-   w3m # terminal browser
-   ytfzf # terminal youtube 
-   bemenu # search bar
-   glib # gsettings
-   pixcat
-  ];
+    pulseaudio   
+    w3m # terminal browser
+    ytfzf # terminal youtube 
+    bemenu # search bar
+    glib # gsettings
+    pixcat
+   ];
   
    file = {
     ".config/wallpapers".source = ../modules/themes/wallpapers;
@@ -271,10 +290,10 @@
     ".config/ytfzf/subscriptions".source = ../config/ytfzf/subscriptions;
     ".mozilla/firefox/mz4w5cdv.default/chrome".source = ../config/chrome; 
     ".mozilla/firefox/profiles.ini".source = ../config/firefox/profiles.ini; 
-  };
+   };
 
-  stateVersion = "22.05";
-};
+   stateVersion = "22.05";
+  };
 
 
   #default home directories
@@ -301,11 +320,10 @@
   };
 
 
-
-   }; #end of home-manager programs
+ }; #end of home-manager programs
 
 
      
-  }; # end of home-manager
+ }; # end of home-manager
 
 } # end of configuration

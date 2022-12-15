@@ -6,10 +6,15 @@
 #            ╩═╝╩ ╩╩   ╩ ╚═╝╩  
 #
 #  flake.nix
-#   └── ./hosts
-#         └─ ./laptop
-#               ├─ default.nix *
-#               └─ hardware-configuration.nix 
+#   ├── ./hosts
+#   │       ├─ default.nix 
+#   │       ├── configuation.nix
+#   │       └─ ./laptop
+#   │            ├─ default.nix *
+#   │            └── hardware-configuration.nix
+#   └── modules
+#       └── programs
+#          └── kdeconnect.nix             
 #  ──────────────────────────────────────────
 
 { config, pkgs, lib, user, location, ... }:

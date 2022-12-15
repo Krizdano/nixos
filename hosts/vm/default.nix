@@ -7,7 +7,9 @@
 #
 #  flake.nix
 #   └── ./hosts
-#         └─ ./laptop
+#          ├─ default.nix 
+#          ├── configuation.nix
+#          └─ ./vm
 #               ├─ default.nix *
 #               └─ hardware-configuration.nix 
 #   ──────────────────────────────────────────
@@ -83,10 +85,10 @@
     #useGlobalPkgs = true;
     users.${user} = { config, pkgs, inputs, ... }: {
 
-      imports = 
-      [ ../../modules/shell/zsh.nix
-        ../../modules/WindowManagers/sway.nix
-     ];
+    #  imports = 
+    #  [ ../../modules/shell/zsh.nix
+    #    ../../modules/WindowManagers/sway.nix
+    # ];
       
   # Everything inside here is managed by Home Manager!
 

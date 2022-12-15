@@ -1,3 +1,19 @@
+#  ──────────────────────────────────────────
+#           ╔═╗╦═╗╔═╗╔═╗╦═╗╔═╗╔╦╗╔═╗
+#           ╠═╝╠╦╝║ ║║ ╦╠╦╝╠═╣║║║╚═╗
+#           ╩  ╩╚═╚═╝╚═╝╩╚═╩ ╩╩ ╩╚═╝
+#           My essential applications
+#
+#           flake.nix
+#           ├─ ./hosts
+#           │    ├── default.nix
+#           │    └── configuration.nix 
+#           ├── modules
+#           └── programs
+#               ├── default.nix *
+#               └── ... 
+#  ──────────────────────────────────────────
+
 [
   ./gh.nix
   ./git.nix
@@ -11,3 +27,5 @@
   ./mako.nix
   ./pistol.nix
 ]
+ 
+# dunst has been replaced by mako
