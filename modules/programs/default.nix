@@ -26,6 +26,7 @@
   #./dunst.nix
   ./mako.nix
   ./pistol.nix
+  ./qute.nix
 ]
  
 # dunst has been replaced by mako

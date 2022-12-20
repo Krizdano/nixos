@@ -80,11 +80,14 @@
   };
 
 
+# allow unfree packages
+nixpkgs.config.allowUnfree = true;
+
+
   environment.systemPackages = with pkgs; [
     glow
     xdg-utils
-    (pkgs.callPackage ../scripts/lobster-movie.nix {})
-  ];
+     ];
   # sound 
   # hardware.pulseaudio.enable = false;  
 

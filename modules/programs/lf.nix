@@ -13,7 +13,7 @@
      "<enter>" = "shell";
      "o" = "$glow -p $f";
      "DD" = "delete";
-     "p" = "$pixcat fit-screen --enlarge $f";
+     "b" = "$pixcat fit-screen --enlarge $f";
    };
    #commands = {
    #  follow_link = ''

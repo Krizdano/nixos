@@ -26,7 +26,6 @@
       ./hardware-configuration.nix
     ];
    
-  
   # adb
    programs.adb.enable = true;
   
@@ -53,8 +52,8 @@
      };
    };
    # get latest kernel
-   kernelPackages = pkgs.linuxPackages_latest;
- }; 
+   kernelPackages = pkgs.linuxPackages_6_0;
+  }; 
   
  
   #virtualisation
@@ -69,7 +68,6 @@
   programs.light.enable= true;
   
  
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -82,6 +80,8 @@
      gimp
      tdesktop # telegram
      firefox-wayland 
+    (pkgs.callPackage ../../modules/programs/lobster-movie.nix {})
+    (pkgs.callPackage ../../modules/programs/oi.nix {})
      #sway
   ];
 

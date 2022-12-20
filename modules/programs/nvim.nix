@@ -41,10 +41,26 @@
                         \ coc#refresh()''; }; # using tab for completion
     #plugins
     plugins = with pkgs.vimPlugins; [
-       vim-nix #nix language syntaxhighlighting 
+       #vim-nix #nix language syntaxhighlighting 
        coc-rust-analyzer # rust language support  
        quick-scope # hightlight character with f or t to move between them
        vimwiki
+
+    
+    {
+     plugin =  (nvim-treesitter.withPlugins (plugins: with plugins; [
+         nix
+         rust
+       ]));
+        type = "lua";
+	config = ''require'nvim-treesitter.configs'.setup {
+                    highlight = {
+                     enable = true,
+                     additional_vim_regex_highlighting = false,
+                     },
+                    }'';
+    }
+       
 
      {
       plugin = nvim-autopairs; # auto pair parantheses and quotes
