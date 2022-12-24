@@ -82,6 +82,7 @@
      firefox-wayland 
     (pkgs.callPackage ../../modules/programs/lobster-movie.nix {})
     (pkgs.callPackage ../../modules/programs/oi.nix {})
+    (pkgs.callPackage ../../modules/programs/tt.nix {})
      #sway
   ];
 

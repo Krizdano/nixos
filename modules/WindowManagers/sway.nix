@@ -78,7 +78,7 @@
       # keybindings 
       keybindings = {     
        "mod4+b" = "exec firefox"; # opens firefox
-       "mod4+r" = "exec qutebrowser"; # opens firefox
+       "mod4+m" = "exec ~/.config/scripts/ytmpv.sh"; # opens firefox
        "mod4+Shift+y" = "exec firefox https://www.youtube.com"; # opens youtube in firefox
        "mod4+Shift+m" = "exec qutebrowser https://www.youtube.com"; # opens youtube in firefox
        "mod4+Shift+n" = "exec firefox https://mipmip.github.io/home-manager-option-search/"; # opens home-manager search

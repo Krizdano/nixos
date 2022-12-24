@@ -16,14 +16,15 @@ programs.qutebrowser = {
    scrolling.bar = "when-searching";
    url.default_page = "about:blank";
    url.start_pages = "about:blank";
+   colors.webpage.preferred_color_scheme = "dark";
   };
   extraConfig = ''
   config.source('themes/city-light-theme.py')
   config.set("colors.webpage.darkmode.enabled", True)
+  config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
   '';
 };
  home.file = {
  ".config/qutebrowser/themes".source = ../themes/qutebrowser;
-
  };
 }
