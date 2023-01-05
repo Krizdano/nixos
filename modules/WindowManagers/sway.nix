@@ -171,7 +171,6 @@
     # extra configurations
     extraConfig = '' 
      exec autotiling 
-     exec inactive-windows-transparency.py  
      include /home/krizdavezz/.config/sway/extraconf
      for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 2
      for_window [app_id="mpv"] floating enable, sticky enable, resize set width 100ppt, move position 0 0,resize set width 99ppt 
@@ -188,7 +187,6 @@
     sway-launcher-desktop
     wl-clipboard
     wf-recorder
-    sway-contrib.inactive-windows-transparency
     autotiling
     slurp
   ];

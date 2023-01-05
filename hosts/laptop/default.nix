@@ -52,7 +52,7 @@
      };
    };
    # get latest kernel
-   kernelPackages = pkgs.linuxPackages_6_0;
+   kernelPackages = pkgs.linuxPackages_zen;
   }; 
   
  

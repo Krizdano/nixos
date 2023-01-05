@@ -83,7 +83,7 @@
                     color15 #A6ADC8
 
                   
-                 \n background_opacity 0.6
+                 \n background_opacity 0.6 
                  \n dynamic_background_opacity yes
                  \n confirm_os_window_close 0 ";
   };
